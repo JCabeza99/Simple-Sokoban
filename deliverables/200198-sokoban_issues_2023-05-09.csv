@@ -1,0 +1,21 @@
+Issue ID,URL,Title,State,Description,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+1,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/1,Create project structure,Open,"Create the maven project, the necessary packages and the interfaces that will be implemented.","CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 16:58:04,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+2,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/2,Create the user gui,Open,"REQ: 1, 2, 6, 16
+
+Implement the gui which will receive all the data from other classes to paint the screen.","CABEZA EXPOLIO, JAIME",170126,"OJEDA HIGUERA, DIEGO",200261,No,No,2023-05-20,2023-05-09 17:05:11,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+3,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/3,Implement movement logic,Open,"REQ: 3, 4, 5
+
+Implement the movement logic taking into consideration the wall collisions and box collisions","CABEZA EXPOLIO, JAIME",170126,"QUEROL LEÓN, RAMÓN",200198,No,No,2023-05-20,2023-05-09 17:07:41,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+4,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/4,Continous integration,Open,Prepare the GitLab enviroment to run tests when changes are commited and upload code to SonarQube,"CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:08:50,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+5,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/5,Create controller class,Open,"REQ: 6, 7, 8, 13, 14
+
+This class will manage all the calculation inside sokoban game. Create the attributes and the constructor","CABEZA EXPOLIO, JAIME",170126,"HOMBRADOS GARCIA, ALEJANDRO",160450,No,No,2023-05-20,2023-05-09 17:13:55,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+6,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/6,Implement the level class,Open,"REQ: 1, 4, 6, 7, 8
+
+Implement the level class that will hold the data and check if a movement is legal or not","CABEZA EXPOLIO, JAIME",170126,"QUEROL LEÓN, RAMÓN",200198,No,No,2023-05-20,2023-05-09 17:31:20,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+7,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/7,Implement the player model,Open,"REQ: 5
+
+Create and implement the player class which will hold information about the player's location.","CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:36:44,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+8,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/8,Manage project dependencies,Open,Manage the project structure and the pom file,"CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:41:40,2023-05-09 17:42:34,,Sprint 1,,"Feature,User-story",0,0
+9,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/9,Create test structure,Open,Create the test structure inside the project. This includes creating all the necessary classes to test the features planned for the first sprint deadline.,"CABEZA EXPOLIO, JAIME",170126,"HOMBRADOS GARCIA, ALEJANDRO",160450,No,No,2023-05-20,2023-05-09 17:53:16,2023-05-09 17:54:33,,Sprint 1,,"Feature,User-story",0,0
+10,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/10,Implement test cases,Open,Implement the specified test cases for the first deadline.,"CABEZA EXPOLIO, JAIME",170126,"OJEDA HIGUERA, DIEGO",200261,No,No,2023-05-20,2023-05-09 17:55:46,2023-05-09 17:55:52,,Sprint 1,,"Feature,User-story",0,0

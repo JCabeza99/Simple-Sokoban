@@ -1,3 +1,0 @@
-# Sokoban
-
-Cajas Project

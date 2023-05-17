@@ -28,6 +28,11 @@
         <maven.surefire>3.0.0-M5</maven.surefire>
         <maven.jar>3.2.0</maven.jar>
         <maven.install>3.0.0-M1</maven.install>
+
+        <!-- Continous integration -->
+        <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
+        <sonar.coverage.exclusions>**/view,**/controller</sonar.coverage.exclusions>
+
     </properties>
 
     <dependencies>

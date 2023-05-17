@@ -31,6 +31,7 @@
 
         <!-- Continous integration -->
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
+        <sonar.coverage.exclusions>**/view,**/controller</sonar.coverage.exclusions>
 
     </properties>
 

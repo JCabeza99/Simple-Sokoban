@@ -1,5 +1,8 @@
 package es.upm.pproject.sokoban.view;
 
+import es.upm.pproject.sokoban.controller.*;
+import es.upm.pproject.sokoban.view.*;
+import es.upm.pproject.sokoban.model.*;
 
 import static java.awt.Font.PLAIN;
 import static java.awt.Font.BOLD;
@@ -14,8 +17,9 @@ import javax.swing.border.EmptyBorder;
 
 public class Gui extends JFrame {
 
+	Controller controller;
 	
-    char[][] nivel  = {	{'+','+','+','+','+','+','+'},
+    int[][] nivel  = {	{'+','+','+','+','+','+','+'},
     					{'+','w','.','.','.','.','+'},
     					{'+','.','.','.','.','.','+'},
     					{'+','.','*','#','.','.','+'},
@@ -122,6 +126,8 @@ public class Gui extends JFrame {
 	 */
 	public Gui() {
 		
+		controller = new Controller("patata");
+		
 		 Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	    double h= screenSize.getHeight();
 	    double w= screenSize.getWidth();
@@ -215,23 +221,28 @@ public class Gui extends JFrame {
 	          int keyCode = e.getKeyCode();
 	          if (keyCode == KeyEvent.VK_UP) {
 	          	System.out.println("Up Arrrow-Key is pressed!");
-	          	//manda señal a controler 0
+	          	controller.move(KeyEvent.VK_UP);
 	          }
+	          
+	          else if (keyCode == KeyEvent.VK_RIGHT) {
+		          	System.out.println("Right Arrrow-Key is pressed!");
+		          	controller.move(KeyEvent.VK_RIGHT);
+		      }
 	          
 	          else if (keyCode == KeyEvent.VK_DOWN) {
 	          	System.out.println("Down Arrrow-Key is pressed!");
-	          	//manda señal a controler 1
+	          	controller.move(KeyEvent.VK_DOWN);
 	          }
 	          
 	          else if (keyCode == KeyEvent.VK_LEFT) {
 	          	System.out.println("Left Arrrow-Key is pressed!");
-	          	//manda señal a controler 2
+	          	controller.move(KeyEvent.VK_LEFT);
 	          }
-	          
-	          else if (keyCode == KeyEvent.VK_RIGHT) {
-	          	System.out.println("Right Arrrow-Key is pressed!");
-	          	//manda señal a controler 3
-	          }
+	          Level level = controller.getLevel();
+	          nivel = level.getMap();
+	          col = level.getPlayer().getX();
+	          fil = level.getPlayer().getY();
+	          update(getGraphics());
 	        }
 	      });
 	    

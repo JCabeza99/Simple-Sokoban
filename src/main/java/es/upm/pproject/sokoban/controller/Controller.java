@@ -4,22 +4,26 @@ public class Controller {
 	Level level;
 	Player player;
 	String path;
-	LevelFactory Generador;
 	public Controller(String path){
-		this.path=path;
-		Generador=new LevelFactory(path);
+		this.path=path;		
 		player = new Player(0,0);
-		level= new Level(null, 1, player);
-		Generador.generateLevel(level);
+		level = LevelFactory.createLevel(1, player);
 	}
 	 public void move(int input) {
 		 level.move(input);
 	 }
+
+	 public void nextLevel() {
+		int playerLevel = player.getLevel();
+		level = LevelFactory.createLevel(playerLevel + 1, player);
+	 }
 	 
 	 public void reStartGame(){
-		 Generador=new LevelFactory(path);
-		 Generador.generateLevel(level);
+		int playerLevel = player.getLevel();
+		player.getScore().resetLevelScore();
+		level = LevelFactory.createLevel(playerLevel, player);
 	 }
+	 
 	 public Level getLevel() {
 		 return level;
 	 }

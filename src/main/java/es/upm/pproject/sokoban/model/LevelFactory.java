@@ -1,7 +1,7 @@
 package es.upm.pproject.sokoban.model;
 
 public class LevelFactory {
-    String Path;
+    public static final String PATH = "";
     
     public LevelFactory(String Path){
     	

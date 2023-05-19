@@ -237,9 +237,13 @@ public class Gui extends JFrame {
 	          	controller.move(KeyEvent.VK_LEFT);
 	          }
 	          Level level = controller.getLevel();
+			  Player player = level.getPlayer();
+			  Score score = player.getScore();
 	          nivel = level.getMap();
-	          col = level.getPlayer().getxPos();
-	          fil = level.getPlayer().getyPos();
+	          col = player.getxPos();
+	          fil = player.getyPos();
+			  movimientosLvl = score.getLevelScore();
+			  movimientosAnt = score.getTotalScore();
 	          update(getGraphics());
 	        }
 	      });

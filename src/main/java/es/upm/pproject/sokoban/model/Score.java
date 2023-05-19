@@ -7,6 +7,8 @@ public class Score {
 
     public Score() {}
 
+    //Getters and setters
+
     public int getLevelScore() {
         return levelScore;
     }
@@ -15,13 +17,27 @@ public class Score {
 		return totalScore;
 	}
 
-	public void setTotalScore(int totalScore) {
-		this.totalScore = totalScore;
+	public void incrementLevelScore() {
+		levelScore++;
+        totalScore++;
 	}
 
-	public void setLevelScore(int levelScore) {
+    public void decrementLevelScore() {
+        levelScore--;
+        totalScore--;
+    }
+
+    public void resetLevelScore() {
+        totalScore -= levelScore;
+        levelScore = 0;
+    }
+
+    public void setLevelScore(int levelScore) {
 		this.levelScore = levelScore;
 	}
 
+    public void setTotalScore(int totalScore) {
+		this.totalScore = totalScore;
+    }
     
 }

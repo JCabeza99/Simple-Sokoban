@@ -4,7 +4,8 @@ public class Level {
 	int map[][];
 	int nLevel;
 	Player player;
-	public Level(){
+	public Level(Player player){
+		this.player = player;
   	}
 	public void Move(int dir){
 		System.out.println("muevo");

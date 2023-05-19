@@ -9,9 +9,7 @@ import static java.awt.Font.BOLD;
 import java.awt.*;
 import java.awt.event.*;
 
-import java.util.Iterator;
 
-import javax.swing.table.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -38,7 +36,7 @@ public class Gui extends JFrame {
 
 	private JPanel contentPane;
 	int movimientosLvl = 0;
-	int movimientosAnt = 5;
+	int movimientosAnt = 0;
 	
     String sSistemaOperativo = System.getProperty("os.name");
 
@@ -240,8 +238,8 @@ public class Gui extends JFrame {
 	          }
 	          Level level = controller.getLevel();
 	          nivel = level.getMap();
-	          col = level.getPlayer().getX();
-	          fil = level.getPlayer().getY();
+	          col = level.getPlayer().getxPos();
+	          fil = level.getPlayer().getyPos();
 	          update(getGraphics());
 	        }
 	      });

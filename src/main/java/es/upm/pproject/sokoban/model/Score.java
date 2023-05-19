@@ -31,7 +31,11 @@ public class Score {
         totalScore -= levelScore;
         levelScore = 0;
     }
-
+    
+    public void nextLevel() {
+    	
+    }
+    
     public void setLevelScore(int levelScore) {
 		this.levelScore = levelScore;
 	}

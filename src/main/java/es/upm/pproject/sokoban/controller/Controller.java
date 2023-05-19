@@ -4,7 +4,7 @@ public class Controller {
 	Level level;
 	String path;
 	LevelFactory Generador;
-	Controller(String path){
+	public Controller(String path){
 		this.path=path;
 		Generador=new LevelFactory(path);
 		level=new Level();

@@ -7,7 +7,13 @@ public class Level {
 	public Level(){
   	}
 	public void Move(int dir){
-		
+		System.out.println("muevo");
+	}
+	public Player getPlayer() {
+		return player;
+	}
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 	public int[][] getMap() {
 		return map;

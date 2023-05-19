@@ -9,11 +9,11 @@ public class Controller {
 		this.path=path;
 		Generador=new LevelFactory(path);
 		player = new Player(0,0);
-		level=new Level(player);
+		level= new Level(null, 1, player);
 		Generador.generateLevel(level);
 	}
 	 public void move(int input) {
-		 level.Move(input);
+		 level.move(input);
 	 }
 	 
 	 public void reStartGame(){

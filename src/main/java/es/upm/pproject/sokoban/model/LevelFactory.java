@@ -6,7 +6,7 @@ public class LevelFactory {
     public LevelFactory(String Path){
     	
     }
-    public Level GenerateLevel(){
+    public void generateLevel(Level level){
     	/*
     	int X,Y;
     	while
@@ -18,6 +18,5 @@ public class LevelFactory {
     	 caso caja 
     	 caso metacaja 
     	*/
-    	return null;
     }
 }

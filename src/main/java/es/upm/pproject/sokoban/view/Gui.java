@@ -94,7 +94,6 @@ public class Gui extends JFrame {
         	for (int j = 0; j < columnas; j++) {
 
 				if(nivel[i][j]=='+') {
-					System.out.println("a");
 			        g2d.drawImage (pared, 80 + j*40, 140 + i*40, 40, 40, this);
 				}
 				else if(nivel[i][j]=='#'){
@@ -116,21 +115,7 @@ public class Gui extends JFrame {
 
     
     
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui frame = new Gui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.

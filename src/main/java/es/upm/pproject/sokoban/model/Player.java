@@ -3,10 +3,12 @@ package es.upm.pproject.sokoban.model;
 public class Player {
 	int X;
 	int Y;
-	int score;
+	int scoreTotal;
+	int scoreLevel;
   	
 	public Player(){ 
-		score=0;
+		scoreTotal=0;
+		scoreLevel=0;
   	}
   	
   	public int getX() {
@@ -25,11 +27,5 @@ public class Player {
 		Y = y;
 	}
 	
-  	public int getScore() {
-		return score;
-	}
-	
-  	public void setScore(int punt) { 
- 		this.score = punt;
-	}
+
 }

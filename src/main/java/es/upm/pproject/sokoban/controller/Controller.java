@@ -1,32 +1,24 @@
 package es.upm.pproject.sokoban.controller;
 import es.upm.pproject.sokoban.model.*;
-import es.upm.pproject.sokoban.view.Gui;
 public class Controller {
-	Player jugador;
-	Level nivel;
+	Level level;
+	String path;
 	LevelFactory Generador;
-	Gui gui;
 	Controller(String path){
-		jugador=new Player();
+		this.path=path;
 		Generador=new LevelFactory(path);
-		gui =new Gui();
-		nivel= Generador.GenerateLevel();
+		level=new Level();
+		Generador.generateLevel(level);
 	}
-	 public void mainController() {
-		 boolean terminar=false;
-		 int input;
-		 while(!terminar) {
-/*			 input=gui.getImput();
-			 switch input{
-			 	case input=0: acction =nivel.move(input)
-			 				  acction.guardar
-			 				  mover jugador;
-			 				  gui.pintar(matriz y score )
-			 				  break
-			    case imput=4: generador=new LevelFactory(path)
-			           		  nivel
-			 }
-*/			 
-		 }
+	 public void move(int input) {
+		 level.Move(input);
+	 }
+	 
+	 public void reStartGame(){
+		 Generador=new LevelFactory(path);
+		 Generador.generateLevel(level);
+	 }
+	 public Level getLevel() {
+		 return level;
 	 }
 }

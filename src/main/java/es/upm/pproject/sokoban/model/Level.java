@@ -98,8 +98,9 @@ public class Level {
 			return new int []{posX+1, posY};
 		case KeyEvent.VK_LEFT:
 			return new int []{posX-1, posY};
+		default :
+			return new int []{posX, posY};
 		}
-		return null; //Check later (probablemente excepcion)
 	}
 	
 	private int checkPosition(int posX, int posY) {

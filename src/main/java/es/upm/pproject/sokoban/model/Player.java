@@ -5,7 +5,7 @@ public class Player {
 	int yPos;
 	Score score;
   	
-	public Player(int xPos, int Ypos){ 
+	public Player(int xPos, int yPos){ 
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}
@@ -14,16 +14,8 @@ public class Player {
 		return xPos;
 	}
 
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-
 	public int getyPos() {
 		return yPos;
-	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
 	}
 
 	public Score getScore() {
@@ -33,7 +25,9 @@ public class Player {
 	public void setScore(Score score) {
 		this.score = score;
 	}
-  	
-	
+  	public void move(int xPos, int yPos) {
+  		this.xPos = xPos;
+  		this.yPos = yPos;
+  	}
 
 }

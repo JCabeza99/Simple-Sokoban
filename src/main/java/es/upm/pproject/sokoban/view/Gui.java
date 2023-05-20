@@ -81,6 +81,9 @@ public class Gui extends JFrame {
 				} else {
 					g2d.drawImage(boxInGoal, 80 + j * 40, 140 + i * 40, 40, 40, this); // change to box in goal
 				}
+				else {
+					g2d.drawImage (caja, 80 + j*40, 140 + i*40, 40, 40, this); //change to box in goal
+				}
 			}
 		}
 		g2d.drawImage(player, 80 + x * 40, 140 + y * 40, 40, 40, this);

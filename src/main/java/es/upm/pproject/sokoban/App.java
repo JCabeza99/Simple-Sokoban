@@ -3,7 +3,7 @@ package es.upm.pproject.sokoban;
 import java.awt.EventQueue;
 import es.upm.pproject.sokoban.view.Gui;
 
-public class App implements AppInterface {
+public class App{
 
 	/**
 	 * Launch the application.

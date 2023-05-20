@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import es.upm.pproject.sokoban.model.Player;
+import es.upm.pproject.sokoban.model.PlayerInterface;
 public class PlayerTest {
-	Player player=new Player(0,0);
+	PlayerInterface player=new Player(0,0);
 	@Test
     public void incrementLevelScoreTest1() {
         player.getScore().incrementLevelScore();

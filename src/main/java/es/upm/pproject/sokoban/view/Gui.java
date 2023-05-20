@@ -93,7 +93,7 @@ public class Gui extends JFrame {
 	public Gui() {
 
 		controller = new Controller();
-		Level mapAux = controller.getLevel();
+		LevelInterface mapAux = controller.getLevel();
 		map = mapAux.getMap();
 		columns = map[0].length;
 		rows = map.length;
@@ -205,9 +205,9 @@ public class Gui extends JFrame {
 	}
 
 	private void updateView() {
-		Level level = controller.getLevel();
-		Player player = level.getPlayer();
-		Score score = player.getScore();
+		LevelInterface level = controller.getLevel();
+		PlayerInterface player = level.getPlayer();
+		ScoreInterface score = player.getScore();
 		map = level.getMap();
 		x = player.getxPos();
 		y = player.getyPos();

@@ -1,10 +1,10 @@
 package es.upm.pproject.sokoban.model;
 
-public class Player implements PlayerInterface {
+public class Player implements PlayerInterface{
 	int xPos;
 	int yPos;
 	int level;
-	Score score;
+	ScoreInterface score;
 
   	
 	public Player(int xPos, int yPos){ 
@@ -22,11 +22,11 @@ public class Player implements PlayerInterface {
 		return yPos;
 	}
 
-	public Score getScore() {
+	public ScoreInterface getScore() {
 		return score;
 	}
 
-	public void setScore(Score score) {
+	public void setScore(ScoreInterface score) {
 		this.score = score;
 	}
   	public void move(int xPos, int yPos) {

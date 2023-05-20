@@ -2,12 +2,20 @@ package es.upm.pproject.sokoban.model;
 
 public interface ScoreInterface {
 
-	void incrementLevelScore();
+	public int getLevelScore();
 
-	void decrementLevelScore();
+	public int getTotalScore();
 
-	void resetLevelScore();
+	public void incrementLevelScore();
 
-	void nextLevel();
+	public void decrementLevelScore();
+
+	public void resetLevelScore();
+
+	public void nextLevel();
+
+	public void setLevelScore(int levelScore);
+
+	public void setTotalScore(int totalScore);
 
 }

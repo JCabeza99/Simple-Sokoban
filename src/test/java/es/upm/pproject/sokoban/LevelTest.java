@@ -8,10 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import es.upm.pproject.sokoban.model.*;
 public class LevelTest {
-	Player player = new Player(0,0);
+	PlayerInterface player = new Player(0,0);
 	int x;
 	int y;
-	Level level;
+	LevelInterface level;
 	//This test class is still on prgress
 	
 	@BeforeEach

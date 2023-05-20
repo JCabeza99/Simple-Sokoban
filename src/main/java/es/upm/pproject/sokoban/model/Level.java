@@ -2,7 +2,7 @@ package es.upm.pproject.sokoban.model;
 
 import java.awt.event.KeyEvent;
 
-public class Level implements LevelIntergace {
+public class Level implements LevelInterface {
 	
 	private int map[][];
 	
@@ -18,10 +18,10 @@ public class Level implements LevelIntergace {
 	
 	private int nGoals;
 	private int boxesInGoal;
-	private Player player;
+	private PlayerInterface player;
 	
 	
-	public Level(int[][] map, int nGoals, Player player){
+	public Level(int[][] map, int nGoals, PlayerInterface player){
 		this.map = map;
 		this.player = player;
 		this.nGoals = nGoals;
@@ -117,11 +117,11 @@ public class Level implements LevelIntergace {
 		
 	}
 	
-	public Player getPlayer() {
+	public PlayerInterface getPlayer() {
 		return player;
 	}
 	
-	public void setPlayer(Player player) {
+	public void setPlayer(PlayerInterface player) {
 		this.player = player;
 	}
 	

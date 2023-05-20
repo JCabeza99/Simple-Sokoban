@@ -1,12 +1,14 @@
 package es.upm.pproject.sokoban;
 
 import es.upm.pproject.sokoban.model.Score;
+import es.upm.pproject.sokoban.model.ScoreInterface;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class ScoreTest {
 	
-	Score punt=new Score();
+	ScoreInterface punt=new Score();
 	@Test
     public void incrementLevelScoreTest1() {
         punt.incrementLevelScore();

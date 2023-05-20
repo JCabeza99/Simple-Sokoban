@@ -1,15 +1,15 @@
 package es.upm.pproject.sokoban.controller;
 
-import es.upm.pproject.sokoban.model.Level;
+import es.upm.pproject.sokoban.model.LevelInterface;
 
 public interface ControllerInterface {
 
-	void move(int input);
+	public void move(int input);
 
-	void nextLevel();
+	public void nextLevel();
 
-	void reStartGame();
+	public void reStartGame();
 
-	Level getLevel();
+	public LevelInterface getLevel();
 
 }

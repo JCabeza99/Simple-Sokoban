@@ -40,7 +40,7 @@ public class LevelFactory {
 	private static final int[] GOALS = {1,2,2};
 	private static final int[][] POS= {{2,4},{3,3},{1,3}};
 
-	public static Level createLevel(int level, Player player) {
+	public static LevelInterface createLevel(int level, PlayerInterface player) {
 		player.move(POS[level-1][0], POS[level-1][1]);
 		player.setLevel(level);
 		return new Level(LEVELS[level-1],GOALS[level-1],player);

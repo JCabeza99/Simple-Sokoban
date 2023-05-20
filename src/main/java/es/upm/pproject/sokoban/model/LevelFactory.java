@@ -11,7 +11,6 @@ public class LevelFactory {
 	 * 4 caja meta
 	 */
 	//This class is expected to parse a level from a text document and build it inside the application
-    private static final String PATH = "";
 	
 	private static final int[][][] LEVELS = {//Level 1
 											{{2,2,2,2,0,0,0,0},

@@ -1,7 +1,6 @@
 package es.upm.pproject.sokoban;
 
 import java.awt.EventQueue;
-import es.upm.pproject.sokoban.controller.Controller;
 import es.upm.pproject.sokoban.view.Gui;
 
 public class App {

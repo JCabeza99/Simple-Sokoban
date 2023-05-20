@@ -17,23 +17,12 @@ public class Gui extends JFrame {
 
 	Controller controller;
 	
-    int[][] nivel  = {	{'+','+','+','+','+','+','+'},
-    					{'+','w','.','.','.','.','+'},
-    					{'+','.','.','.','.','.','+'},
-    					{'+','.','*','#','.','.','+'},
-    					{'+','.','.','.','.','.','+'},
-    					{'+','.','.','.','.','.','+'},
-    					{'+','.','.','.','.','.','+'},
-    					{'+','.','.','.','.','.','+'},
-    					{'+','.','.','.','.','.','+'},
-    					{'+','+','+','+','+','+','+'}};
-    int filas = nivel.length;
-    int columnas = nivel[0].length;
-	int fil = 4;
-	int col = 4;
+    int[][] nivel;
+    int filas;
+    int columnas;
+	int y;
+	int x;
 	
-	char muro = '+';
-
 	private JPanel contentPane;
 	int movimientosLvl = 0;
 	int movimientosAnt = 0;
@@ -42,15 +31,6 @@ public class Gui extends JFrame {
 
     public void paint (Graphics g)
     {
-
-        for(int i = 0; i<filas;i++) {
-        	for (int j = 0; j < columnas; j++) {
-    			if(nivel[i][j]=='w') {
-    		        fil = i;
-    		        col = j;
-    			}
-    		}
-        }
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         
@@ -61,7 +41,7 @@ public class Gui extends JFrame {
         g2d.drawString("Movimientos:", 520, 400);
         g2d.drawString(movimientosLvl + "", 520, 440);
         g2d.drawString("Movimientos totales", 520, 480);
-        g2d.drawString(movimientosLvl + movimientosAnt + "", 520, 520);
+        g2d.drawString(movimientosAnt + "", 520, 520);
         
         Image pared;
         Image suelo;
@@ -95,22 +75,25 @@ public class Gui extends JFrame {
 
         	for (int j = 0; j < columnas; j++) {
 
-				if(nivel[i][j]=='+') {
+				if(nivel[i][j]==2) {
 			        g2d.drawImage (pared, 80 + j*40, 140 + i*40, 40, 40, this);
 				}
-				else if(nivel[i][j]=='#'){
+				else if(nivel[i][j]==3){
 					g2d.drawImage (caja, 80 + j*40, 140 + i*40, 40, 40, this);
 				}
-				else if(nivel[i][j]=='*'){
+				else if(nivel[i][j]==1){
 					g2d.drawImage (suelo, 80 + j*40, 140 + i*40, 40, 40, this);
 					g2d.drawImage (meta, 80 + j*40, 140 + i*40, 40, 40, this);
 				}
-				else {
+				else if(nivel[i][j] == 0){
 					g2d.drawImage (suelo, 80 + j*40, 140 + i*40, 40, 40, this);
+				}
+				else {
+					g2d.drawImage (caja, 80 + j*40, 140 + i*40, 40, 40, this); //change to box in goal
 				}
 			}
         }
-        g2d.drawImage (player,80 + col*40, 140 + fil*40, 40, 40, this);
+        g2d.drawImage (player,80 + x*40, 140 + y*40, 40, 40, this);
 
     }
     
@@ -124,9 +107,16 @@ public class Gui extends JFrame {
 	 */
 	public Gui() {
 		
-		controller = new Controller("patata");
-		
-		 Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		controller = new Controller();
+		Level nivelAux = controller.getLevel();
+		nivel = nivelAux.getMap();
+		columnas = nivel[0].length;
+		filas = nivel.length;
+		x = nivelAux.getPlayer().getxPos();
+		y = nivelAux.getPlayer().getyPos();
+
+		System.out.println(nivel.toString());
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	    double h= screenSize.getHeight();
 	    double w= screenSize.getWidth();
 		    
@@ -240,10 +230,24 @@ public class Gui extends JFrame {
 			  Player player = level.getPlayer();
 			  Score score = player.getScore();
 	          nivel = level.getMap();
-	          col = player.getxPos();
-	          fil = player.getyPos();
+	          x = player.getxPos();
+	          y = player.getyPos();
 			  movimientosLvl = score.getLevelScore();
 			  movimientosAnt = score.getTotalScore();
+			  if(level.getBoxesInGoal() == level.getnGoals())
+			  {
+				  controller.nextLevel();
+				  level = controller.getLevel();
+				  player = level.getPlayer();
+				  score = player.getScore();
+		          nivel = level.getMap();
+		          x = player.getxPos();
+		          y = player.getyPos();
+		          columnas = nivel[0].length;
+		  		  filas = nivel.length;
+				  movimientosLvl = score.getLevelScore();
+				  movimientosAnt = score.getTotalScore();
+			  }
 	          update(getGraphics());
 	        }
 	      });

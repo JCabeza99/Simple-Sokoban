@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 public class Gui extends JFrame {
 
-	Controller controller;
+	ControllerInterface controller;
 
 	int[][] map;
 	int rows;

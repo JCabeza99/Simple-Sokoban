@@ -2,7 +2,7 @@ package es.upm.pproject.sokoban.model;
 
 import java.awt.event.KeyEvent;
 
-public class Level {
+public class Level implements LevelIntergace {
 	
 	private int map[][];
 	

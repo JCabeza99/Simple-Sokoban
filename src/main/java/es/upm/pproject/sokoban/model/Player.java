@@ -1,6 +1,6 @@
 package es.upm.pproject.sokoban.model;
 
-public class Player {
+public class Player implements PlayerInterface {
 	int xPos;
 	int yPos;
 	int level;

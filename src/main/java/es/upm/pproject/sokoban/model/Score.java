@@ -1,6 +1,6 @@
 package es.upm.pproject.sokoban.model;
 
-public class Score {
+public class Score implements ScoreInterface {
 
     int levelScore;
     int totalScore;

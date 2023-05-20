@@ -84,6 +84,7 @@ public class Level {
 				
 			}
 			break;
+		default : return;
 		}
 	}
 	

@@ -5,7 +5,10 @@ public class Score {
     int levelScore;
     int totalScore;
 
-    public Score() {}
+    public Score(){
+    	levelScore=0;
+        totalScore=0;
+    }
 
     //Getters and setters
 

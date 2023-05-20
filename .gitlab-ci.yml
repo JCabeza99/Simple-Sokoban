@@ -14,3 +14,5 @@ sonarqube-check:
   script: 
     - mvn verify sonar:sonar -Pcoverage -Dsonar.projectKey=Sokoban
   allow_failure: true
+  only:
+    - main

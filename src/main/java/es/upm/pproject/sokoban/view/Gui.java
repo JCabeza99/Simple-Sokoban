@@ -65,10 +65,6 @@ public class Gui extends JFrame {
 			boxInGoal = t.getImage("Photos\\GoalBox.png");
 		}
 
-		// Image pared = t.getImage ("fotos/pared.jpg");
-		// Image suelo = t.getImage ("fotos/suelo.jpg");
-		// Image player = t.getImage ("fotos/player.png");
-		// Image caja = t.getImage ("fotos/caja.png");
 		for (int i = 0; i < rows; i++) {
 
 			for (int j = 0; j < columns; j++) {

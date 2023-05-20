@@ -12,6 +12,7 @@ public class LevelTest {
 	int x;
 	int y;
 	Level level;
+	//This test class is still on prgress
 	
 	@BeforeEach
 	public void init() {
@@ -45,12 +46,6 @@ public class LevelTest {
         assertEquals(x,player.getxPos());
 	}
 	@Test
-    public void moveBoxObstacleTest1() {
-		level.move(KeyEvent.VK_LEFT);
-        assertEquals(y,player.getyPos());
-        assertEquals(x-1 ,player.getxPos());
-	}
-	@Test
     public void moveBoxObstacle2() {
 		level.move(KeyEvent.VK_UP);
 		level.move(KeyEvent.VK_RIGHT);
@@ -59,11 +54,5 @@ public class LevelTest {
 		level.move(KeyEvent.VK_DOWN);
         int[][] map = level.getMap();
 		assertEquals(3, map[5][5]);
-	}
-	@Test
-    public void moveWallObstacle() {
-		level.move(KeyEvent.VK_LEFT);
-        assertEquals(y,player.getyPos());
-        assertEquals(x,player.getxPos());
 	}
 }

@@ -29,6 +29,26 @@ public class Level {
   	}
 	
 	
+	public int getnGoals() {
+		return nGoals;
+	}
+
+
+	public void setnGoals(int nGoals) {
+		this.nGoals = nGoals;
+	}
+
+
+	public int getBoxesInGoal() {
+		return boxesInGoal;
+	}
+
+
+	public void setBoxesInGoal(int boxesInGoal) {
+		this.boxesInGoal = boxesInGoal;
+	}
+
+
 	public void move(int dir){
 		
 		
@@ -37,6 +57,7 @@ public class Level {
 		switch(checkPosition(newPosPlayer[0], newPosPlayer[1])) {
 		case 0:
 			player.move(newPosPlayer[0], newPosPlayer[1]);
+			player.getScore().incrementLevelScore();
 			break;
 		case 1:
 			
@@ -45,18 +66,19 @@ public class Level {
 			if(checkPosition(newPosBox[0], newPosBox[1]) == 0) {
 				
 				player.move(newPosPlayer[0], newPosPlayer[1]);
+				player.getScore().incrementLevelScore();
 				
-				if(map[newPosPlayer[0]][newPosPlayer[1]] == 3) {
-					map[newPosPlayer[0]][newPosPlayer[1]] = 0;
+				if(map[newPosPlayer[1]][newPosPlayer[0]] == 3) {
+					map[newPosPlayer[1]][newPosPlayer[0]] = 0;
 				}else {
-					map[newPosPlayer[0]][newPosPlayer[1]] = 1;
+					map[newPosPlayer[1]][newPosPlayer[0]] = 1;
 					boxesInGoal--;
 				}
 				
-				if(map[newPosBox[0]][newPosBox[1]] == 0) {
-					map[newPosBox[0]][newPosBox[1]] = 3;
+				if(map[newPosBox[1]][newPosBox[0]] == 0) {
+					map[newPosBox[1]][newPosBox[0]] = 3;
 				}else {
-					map[newPosBox[0]][newPosBox[1]] = 4;
+					map[newPosBox[1]][newPosBox[0]] = 4;
 					boxesInGoal++;
 				}
 				
@@ -73,16 +95,16 @@ public class Level {
 		case KeyEvent.VK_DOWN:
 			return new int []{posX, posY+1};
 		case KeyEvent.VK_RIGHT:
-			return new int []{posX, posY+1};
+			return new int []{posX+1, posY};
 		case KeyEvent.VK_LEFT:
-			return new int []{posX, posY-1};
+			return new int []{posX-1, posY};
 		}
 		return null; //Check later (probablemente excepcion)
 	}
 	
 	private int checkPosition(int posX, int posY) {
 		
-		int mapItem = map[posX][posY]; //It checks what kind of item is in that position
+		int mapItem = map[posY][posX]; //It checks what kind of item is in that position
 		if(mapItem<2) { // If the item is an empty position or a goal position (without boxes)
 			return 0;   // The action "move" can always be performed
 		}else if(mapItem>2) { //If the item is a box

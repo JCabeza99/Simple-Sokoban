@@ -39,11 +39,10 @@ public class LevelFactory {
 											 {2,2,2,2,0,0}},
 											};
 	private static final int[] GOALS = {1,2,2};
-	private static final int[][] POS= {{4,2},{3,3},{3,1}};
+	private static final int[][] POS= {{2,4},{3,3},{1,3}};
 
 	public static Level createLevel(int level, Player player) {
-		player.setxPos(POS[level-1][0]);
-		player.setyPos(POS[level-1][1]);
+		player.move(POS[level-1][0], POS[level-1][1]);
 		player.setLevel(level);
 		return new Level(LEVELS[level-1],GOALS[level-1],player);
 	}

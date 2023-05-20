@@ -3,9 +3,8 @@ import es.upm.pproject.sokoban.model.*;
 public class Controller {
 	Level level;
 	Player player;
-	String path;
-	public Controller(String path){
-		this.path=path;		
+	//String path;
+	public Controller(){
 		player = new Player(0,0);
 		level = LevelFactory.createLevel(1, player);
 	}
@@ -15,6 +14,7 @@ public class Controller {
 
 	 public void nextLevel() {
 		int playerLevel = player.getLevel();
+		player.getScore().nextLevel();
 		level = LevelFactory.createLevel(playerLevel + 1, player);
 	 }
 	 

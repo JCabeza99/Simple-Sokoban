@@ -36,7 +36,6 @@ public class Score {
     }
 
     public void nextLevel() {
-        totalScore += levelScore;
         levelScore = 0;
     }
 

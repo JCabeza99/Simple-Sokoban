@@ -23,19 +23,23 @@ public class Score {
 	}
 
     public void decrementLevelScore() {
-        levelScore--;
-        totalScore--;
+        if(levelScore != 0)
+        {
+            levelScore--;
+            totalScore--;
+        }
     }
 
     public void resetLevelScore() {
         totalScore -= levelScore;
         levelScore = 0;
     }
-    
+
     public void nextLevel() {
-    	
+        totalScore += levelScore;
+        levelScore = 0;
     }
-    
+
     public void setLevelScore(int levelScore) {
 		this.levelScore = levelScore;
 	}
@@ -43,5 +47,5 @@ public class Score {
     public void setTotalScore(int totalScore) {
 		this.totalScore = totalScore;
     }
-    
+
 }

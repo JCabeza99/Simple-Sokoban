@@ -1,0 +1,54 @@
+Issue ID,URL,Title,State,Description,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+1,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/1,Create project structure,Closed,"Create the maven project, the necessary packages and the interfaces that will be implemented.","CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 16:58:04,2023-06-01 17:08:10,2023-05-16 20:54:21,Sprint 1,,"Closed,User-story,Work-item,high-priority",0,7800
+2,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/2,Create the user gui,Closed,"REQ: 1, 2, 6, 16
+
+Implement the gui which will receive all the data from other classes to paint the screen.","CABEZA EXPOLIO, JAIME",170126,"OJEDA HIGUERA, DIEGO",200261,No,No,2023-05-20,2023-05-09 17:05:11,2023-05-20 11:57:35,2023-05-19 16:28:24,Sprint 1,,"Closed,Feature,User-story,high-priority",0,10800
+3,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/3,Implement movement logic,Closed,"REQ: 3, 4, 5
+
+Implement the movement logic taking into consideration the wall collisions and box collisions","CABEZA EXPOLIO, JAIME",170126,"QUEROL LEÓN, RAMÓN",200198,No,No,2023-05-20,2023-05-09 17:07:41,2023-05-20 11:57:35,2023-05-20 11:21:24,Sprint 1,,"Closed,Feature,User-story,high-priority",0,0
+4,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/4,Continous integration,Closed,Prepare the GitLab enviroment to run tests when changes are commited and upload code to SonarQube,"CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:08:50,2023-06-01 17:07:10,2023-05-17 20:52:51,Sprint 1,,"Closed,User-story,Work-item,high-priority",0,1800
+5,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/5,Create controller class,Closed,"REQ: 6, 7, 8, 13, 14
+
+This class will manage all the calculation inside sokoban game. Create the attributes and the constructor","CABEZA EXPOLIO, JAIME",170126,"HOMBRADOS GARCIA, ALEJANDRO",160450,No,No,2023-05-20,2023-05-09 17:13:55,2023-05-20 11:57:35,2023-05-19 17:47:45,Sprint 1,,"Closed,Feature,User-story,high-priority",0,7200
+6,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/6,Implement the level class,Closed,"REQ: 1, 4, 6, 7, 8
+
+Implement the level class that will hold the data and check if a movement is legal or not","CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:31:20,2023-05-20 11:57:35,2023-05-20 02:50:50,Sprint 1,,"Closed,Feature,User-story,high-priority",0,7200
+7,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/7,Implement the player model,Closed,"REQ: 5
+
+Create and implement the player class which will hold information about the player's location.","CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:36:44,2023-05-20 11:57:35,2023-05-19 19:13:47,Sprint 1,,"Closed,Feature,User-story,high-priority",0,3600
+8,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/8,Manage project dependencies,Closed,Manage the project structure and the pom file,"CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-05-20,2023-05-09 17:41:40,2023-06-01 17:06:50,2023-05-20 02:51:15,Sprint 1,,"Closed,Feature,User-story,Work-item,high-priority",0,600
+9,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/9,Create test structure,Closed,Create the test structure inside the project. This includes creating all the necessary classes to test the features planned for the first sprint deadline.,"CABEZA EXPOLIO, JAIME",170126,"HOMBRADOS GARCIA, ALEJANDRO",160450,No,No,2023-05-20,2023-05-09 17:53:16,2023-05-20 11:57:35,2023-05-20 01:02:20,Sprint 1,,"Closed,Feature,User-story,high-priority",0,5400
+10,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/10,Implement test cases,Closed,Implement the specified test cases for the first deadline.,"CABEZA EXPOLIO, JAIME",170126,"OJEDA HIGUERA, DIEGO",200261,No,No,2023-05-20,2023-05-09 17:55:46,2023-05-20 11:57:35,2023-05-20 11:21:24,Sprint 1,,"Closed,Feature,User-story,medium-priotity",0,0
+11,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/11,Create and implement Action-Manager,Open,"REQ: 17 18, 19
+
+Create and implement the action and action manager classes which will be necessary for the correct implementation of the undo button,","QUEROL LEÓN, RAMÓN",200198,"","",No,No,,2023-05-10 11:30:44,2023-06-01 17:05:38,,Sprint 2,,"Feature,To-Do,User-story,medium-priotity",0,0
+12,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/12,Create and implement level parse,Open,"REQ: 9, 11, 12
+
+Create and implement the parse class which will read from files with name level_N.txt, where N is a positive number, and transform it into the level matrix.","QUEROL LEÓN, RAMÓN",200198,"","",No,No,,2023-05-10 11:35:10,2023-05-20 11:58:18,,Sprint 2,,"Feature,To-Do,User-story,medium-priotity",0,0
+13,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/13,Create and implement the game menu,Open,"REQ: 19
+
+Implement the game menu functionalities:
+
+ Start a new game, that is, reset the game and starts again from the first level
+
+ Restart the current level
+
+ Undo the last movement
+
+ Save the game
+
+ Open a saved game
+
+ Close the application","QUEROL LEÓN, RAMÓN",200198,"","",No,No,,2023-05-10 11:47:06,2023-05-20 11:58:18,,Sprint 2,,"Feature,To-Do,User-story,low-priority",0,0
+14,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/14,"01/05/2023 meeting, Design the class Architecture",Closed,In this meeting the basic class architecture was discussed and designed. The team decided to meet again the following week due to their lack of java swing knowledge.,"QUEROL LEÓN, RAMÓN",200198,"","",No,No,,2023-05-10 11:58:32,2023-05-20 11:59:16,2023-05-10 11:58:55,Sprint 1,,meeting,0,0
+15,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/15,Implement saving action feature,Closed,"REQ: 18, 19","CABEZA EXPOLIO, JAIME",170126,"","",No,No,,2023-05-10 23:12:34,2023-06-01 17:04:36,2023-06-01 17:04:36,Sprint 2,,"Feature,Rejected,To-Do,User-story,high-priority",0,0
+16,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/16,"09/05/2023 meeting, Create backlog items",Closed,In this meeting we decided how will the backlog items will be creaated and divided the work for the first sprint,"CABEZA EXPOLIO, JAIME",170126,"","",No,No,,2023-05-10 23:14:12,2023-05-20 11:59:16,2023-05-10 23:14:22,Sprint 1,,meeting,0,0
+17,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/17,Desing levels to be used in our game,Open,"REQ: 10, 12
+
+Desing at least three levels that will be played in our game","CABEZA EXPOLIO, JAIME",170126,"","",No,No,2023-07-12,2023-05-10 23:19:54,2023-05-20 11:58:18,,Sprint 2,,"Feature,To-Do,User-story,medium-priotity",0,0
+18,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/18,Implement the ending message,Open,"REQ: 15
+
+After the game is finished, a congratulatory message (popup) displaying the overall score ought to be displayed.","CABEZA EXPOLIO, JAIME",170126,"","",No,No,2023-06-12,2023-05-10 23:26:30,2023-05-20 11:58:38,,Sprint 2,,"Feature,To-Do,User-story,low-priority",0,0
+19,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/19,30/05/2023 Meeting with teacher,Closed,Meeting in which we discussed the actual state of the project and the path forward,"CABEZA EXPOLIO, JAIME",170126,"","",No,No,2023-05-30,2023-06-01 17:00:42,2023-06-01 17:00:44,2023-06-01 17:00:44,Sprint 2,,meeting,0,0
+20,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/20,Refactor code,Open,Refactor actual code to achieve OOP principles,"CABEZA EXPOLIO, JAIME",170126,"","",No,No,2023-06-11,2023-06-01 17:02:22,2023-06-01 17:02:22,,Sprint 2,,"To-Do,User-story,medium-priotity",0,0
+21,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/21,Tests implementation,Open,Develop the tests of the models.,"CABEZA EXPOLIO, JAIME",170126,"","",No,No,2023-06-12,2023-06-01 17:03:24,2023-06-01 17:03:24,,Sprint 2,,"To-Do,User-story,high-priority",0,0

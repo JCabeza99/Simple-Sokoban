@@ -1,0 +1,30 @@
+Issue ID,URL,Title,State,Description,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+11,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/11,Create and implement Action-Manager,Open,"REQ: 17 18, 19
+
+Create and implement the action and action manager classes which will be necessary for the correct implementation of the undo button,","QUEROL LEÓN, RAMÓN",200198,"QUEROL LEÓN, RAMÓN",200198,No,No,,2023-05-10 11:30:44,2023-06-01 17:25:49,,Sprint 2,,"Feature,To-Do,User-story,medium-priotity",0,0
+12,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/12,Create and implement level parse,Open,"REQ: 9, 11, 12
+
+Create and implement the parse class which will read from files with name level_N.txt, where N is a positive number, and transform it into the level matrix.","QUEROL LEÓN, RAMÓN",200198,"HOMBRADOS GARCIA, ALEJANDRO",160450,No,No,2023-06-12,2023-05-10 11:35:10,2023-06-01 17:16:56,,Sprint 2,,"Feature,To-Do,User-story,medium-priotity",0,0
+13,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/13,Create and implement the game menu,Open,"REQ: 19
+
+Implement the game menu functionalities:
+
+ Start a new game, that is, reset the game and starts again from the first level
+
+ Restart the current level
+
+ Undo the last movement
+
+ Save the game
+
+ Open a saved game
+
+ Close the application","QUEROL LEÓN, RAMÓN",200198,"OJEDA HIGUERA, DIEGO",200261,No,No,,2023-05-10 11:47:06,2023-06-01 17:17:29,,Sprint 2,,"Feature,To-Do,User-story,low-priority",0,0
+17,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/17,Desing levels to be used in our game,Open,"REQ: 10, 12
+
+Desing at least three levels that will be played in our game","CABEZA EXPOLIO, JAIME",170126,"HOMBRADOS GARCIA, ALEJANDRO",160450,No,No,2023-07-12,2023-05-10 23:19:54,2023-06-01 17:18:50,,Sprint 2,,"Feature,To-Do,User-story,medium-priotity",0,0
+18,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/18,Implement the ending message,Open,"REQ: 15
+
+After the game is finished, a congratulatory message (popup) displaying the overall score ought to be displayed.","CABEZA EXPOLIO, JAIME",170126,"OJEDA HIGUERA, DIEGO",200261,No,No,2023-06-12,2023-05-10 23:26:30,2023-06-01 17:17:46,,Sprint 2,,"Feature,To-Do,User-story,low-priority",0,0
+20,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/20,Refactor code,Open,Refactor actual code to achieve OOP principles,"CABEZA EXPOLIO, JAIME",170126,"CABEZA EXPOLIO, JAIME",170126,No,No,2023-06-11,2023-06-01 17:02:22,2023-06-01 17:18:02,,Sprint 2,,"To-Do,User-story,medium-priotity",0,0
+21,https://costa.ls.fi.upm.es/gitlab/200198/sokoban/-/issues/21,Tests implementation,Open,Develop the tests of the models.,"CABEZA EXPOLIO, JAIME",170126,"QUEROL LEÓN, RAMÓN",200198,No,No,2023-06-12,2023-06-01 17:03:24,2023-06-01 17:18:09,,Sprint 2,,"To-Do,User-story,high-priority",0,0

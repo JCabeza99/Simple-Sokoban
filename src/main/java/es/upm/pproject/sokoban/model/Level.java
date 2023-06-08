@@ -19,13 +19,16 @@ public class Level implements LevelInterface {
 	private int nGoals;
 	private int boxesInGoal;
 	private PlayerInterface player;
+	private String name;
+	private int failureStatus;
 	
-	
-	public Level(int[][] map, int nGoals, PlayerInterface player){
+	public Level(String name, int[][] map, int nGoals, PlayerInterface player, int failureStatus){
+		this.name=name;
 		this.map = map;
 		this.player = player;
 		this.nGoals = nGoals;
 		boxesInGoal = 0;
+		this.failureStatus=failureStatus;
   	}
 	
 	

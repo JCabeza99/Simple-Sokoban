@@ -7,16 +7,18 @@ import java.awt.event.KeyEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import es.upm.pproject.sokoban.model.*;
+import java.io.*;
 public class LevelTest {
 	PlayerInterface player = new Player(0,0);
 	int x;
 	int y;
 	LevelInterface level;
+	String path= "tests"+File.separatorChar ;
 	//This test class is still on prgress
 	
 	@BeforeEach
 	public void init() {
-		level = LevelFactory.createLevel(1, player);
+		level = LevelFactory.createLevel(1, player,path);
 		x = player.getxPos();
 		y = player.getyPos();
 	}

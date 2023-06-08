@@ -1,12 +1,14 @@
 package es.upm.pproject.sokoban.controller;
 import es.upm.pproject.sokoban.model.*;
+import java.io.*;
 public class Controller implements ControllerInterface {
 	LevelInterface level;
 	PlayerInterface player;
+	String path= "levels"+File.separatorChar ;
 	//String path;
 	public Controller(){
 		player = new Player(0,0);
-		level = LevelFactory.createLevel(1, player);
+		level = LevelFactory.createLevel(1, player,path);
 	}
 
 	public void move(int input) {
@@ -17,17 +19,25 @@ public class Controller implements ControllerInterface {
 	public void nextLevel() {
 		int playerLevel = player.getLevel();
 		player.getScore().nextLevel();
-		level = LevelFactory.createLevel(playerLevel + 1, player);
+		level = LevelFactory.createLevel(playerLevel + 1, player,path);
 	 }
 	 
 
-	public void reStartGame(){
+	public void reStartLevel(){
 		int playerLevel = player.getLevel();
 		player.getScore().resetLevelScore();
-		level = LevelFactory.createLevel(playerLevel, player);
+		level = LevelFactory.createLevel(playerLevel, player,path);
 	 }
 	 
-
+	public void reStartGame(){
+		player = new Player(0,0);
+		level = LevelFactory.createLevel(1, player,path);
+	 }
+	
+	public void undo() {
+		
+	}
+	
 	public LevelInterface getLevel() {
 		 return level;
 	 }

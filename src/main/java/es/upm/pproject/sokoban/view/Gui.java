@@ -126,7 +126,7 @@ public class Gui extends JFrame {
 		JLabel lblRG = new JLabel("Restart game");
 		lblRG.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				lblRG.setText(lblRG.getText() + ".");
+				controller.reStartGame();
 				// manda señal a controler 5
 			}
 		});
@@ -166,6 +166,8 @@ public class Gui extends JFrame {
 		lblL.setFont(new Font("Georgia", Font.PLAIN, 14));
 		lblL.setBounds(520, 300, 100, 40);
 		lblL.setHorizontalAlignment(JLabel.LEFT);
+		
+
 
 		/*
 		 * añadir elementos al panel

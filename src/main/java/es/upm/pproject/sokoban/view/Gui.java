@@ -127,6 +127,7 @@ public class Gui extends JFrame {
 		lblRG.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				controller.reStartGame();
+				updateView();
 				// manda señal a controler 5
 			}
 		});

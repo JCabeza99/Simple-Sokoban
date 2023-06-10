@@ -9,6 +9,10 @@ public interface ControllerInterface {
 	public void nextLevel();
 
 	public void reStartGame();
+	
+	public void reStartLevel();
+	
+	public void undo();
 
 	public LevelInterface getLevel();
 

@@ -124,6 +124,10 @@ public class Level implements LevelInterface {
 		return player;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public void setPlayer(PlayerInterface player) {
 		this.player = player;
 	}
@@ -135,6 +139,8 @@ public class Level implements LevelInterface {
 	public void setMap(int[][] map) {
 		this.map = map;
 	}
+	
+
 	
 }
   	

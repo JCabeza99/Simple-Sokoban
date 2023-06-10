@@ -20,7 +20,8 @@ public class Gui extends JFrame {
 	int columns;
 	int y;
 	int x;
-
+	String name;
+	
 	private JPanel contentPane;
 	int levelScore = 0;
 	int TotalScore = 0;
@@ -28,17 +29,31 @@ public class Gui extends JFrame {
 	String sSistemaOperativo = System.getProperty("os.name");
 
 	public void paint(Graphics g) {
+
+		if(false) {
+			super.paint(g);
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.setColor(Color.BLACK);
+			g2d.setFont(new Font("GEORGIA", PLAIN, 40));
+			g2d.drawString("FELICIDADES", 175, 300);
+			g2d.drawString("HAS GANADO", 175, 350);
+		}
+		else {
+		
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("GEORGIA", PLAIN, 40));
 		g2d.drawString("SOKOBAN", 300, 100);
+		g2d.setFont(new Font("GEORGIA", PLAIN, 20));
+		g2d.drawString(name+ "", 200, 125);
 		g2d.setFont(new Font("GEORGIA", BOLD, 15));
 		g2d.drawString("Level Score:", 520, 400);
 		g2d.drawString(levelScore + "", 520, 440);
 		g2d.drawString("Total Score:", 520, 480);
 		g2d.drawString(TotalScore + "", 520, 520);
+
 
 		Image pared;
 		Image suelo;
@@ -84,6 +99,7 @@ public class Gui extends JFrame {
 			}
 		}
 		g2d.drawImage(player, 80 + x * 40, 140 + y * 40, 40, 40, this);
+		}
 
 	}
 
@@ -99,6 +115,9 @@ public class Gui extends JFrame {
 		rows = map.length;
 		x = mapAux.getPlayer().getxPos();
 		y = mapAux.getPlayer().getyPos();
+		name = mapAux.getName();
+		
+		
 
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		double h = screenSize.getHeight();
@@ -111,42 +130,40 @@ public class Gui extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblZ = new JLabel("Undo");
+		JButton lblZ = new JButton("Undo");
 		lblZ.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				lblZ.setText(lblZ.getText() + ".");
-				// manda señal a controler 4
-
+				controller.undo();
+				updateView();
 			}
 		});
 		lblZ.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblZ.setBounds(520, 140, 100, 40); // margen por izquierda margen por arriba ancho y alto
+		lblZ.setBounds(520, 100, 140, 40); // margen por izquierda margen por arriba ancho y alto
 		lblZ.setHorizontalAlignment(JLabel.LEFT);
 
-		JLabel lblRG = new JLabel("Restart game");
+		JButton lblRG = new JButton("Restart game");
 		lblRG.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				controller.reStartGame();
 				updateView();
-				// manda señal a controler 5
 			}
 		});
 		lblRG.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblRG.setBounds(520, 180, 100, 40);
+		lblRG.setBounds(520, 150, 140, 40);
 		lblRG.setHorizontalAlignment(JLabel.LEFT);
 
-		JLabel lblRL = new JLabel("Restart level");
+		JButton lblRL = new JButton("Restart level");
 		lblRL.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				lblRL.setText(lblRL.getText() + ".");
-				// manda señal a controler 6
+				controller.reStartLevel();
+				updateView();
 			}
 		});
 		lblRL.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblRL.setBounds(520, 220, 100, 40);
+		lblRL.setBounds(520, 200, 140, 40);
 		lblRL.setHorizontalAlignment(JLabel.LEFT);
 
-		JLabel lblS = new JLabel("Save");
+		JButton lblS = new JButton("Save");
 		lblS.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				lblS.setText(lblS.getText() + ".");
@@ -154,10 +171,10 @@ public class Gui extends JFrame {
 			}
 		});
 		lblS.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblS.setBounds(520, 260, 100, 40);
+		lblS.setBounds(520, 250, 140, 40);
 		lblS.setHorizontalAlignment(JLabel.LEFT);
 
-		JLabel lblL = new JLabel("Load");
+		JButton lblL = new JButton("Load");
 		lblL.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				lblL.setText(lblL.getText() + ".");
@@ -165,7 +182,7 @@ public class Gui extends JFrame {
 			}
 		});
 		lblL.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblL.setBounds(520, 300, 100, 40);
+		lblL.setBounds(520, 300, 140, 40);
 		lblL.setHorizontalAlignment(JLabel.LEFT);
 		
 
@@ -212,10 +229,13 @@ public class Gui extends JFrame {
 		PlayerInterface player = level.getPlayer();
 		ScoreInterface score = player.getScore();
 		map = level.getMap();
+		name = level.getName();
 		x = player.getxPos();
 		y = player.getyPos();
 		levelScore = score.getLevelScore();
 		TotalScore = score.getTotalScore();
+		columns = map[0].length;
+		rows = map.length;
 		if (level.getBoxesInGoal() == level.getnGoals()) {
 			if (player.getLevel() == 3) {
 				this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
@@ -225,6 +245,7 @@ public class Gui extends JFrame {
 			player = level.getPlayer();
 			score = player.getScore();
 			map = level.getMap();
+			name = level.getName();
 			x = player.getxPos();
 			y = player.getyPos();
 			columns = map[0].length;
@@ -234,4 +255,26 @@ public class Gui extends JFrame {
 		}
 		update(getGraphics());
 	}
+	
+
+
+//	public class PopupExample {
+//
+//
+//	        JFrame frame = new JFrame("Popup Example");
+//	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	        frame.setSize(300, 200);
+//	        frame.setLayout(null);
+//
+//	        JButton button = new JButton("Mostrar popup");
+//	        button.setBounds(100, 50, 100, 30);
+//	        frame.add(button);
+//
+//	        button.addActionListener(e -> {
+//	            JOptionPane.showMessageDialog(frame, "¡Hola! Este es un popup.", "Popup", JOptionPane.INFORMATION_MESSAGE);
+//	        });
+//
+//	        frame.setVisible(true);
+//	    
+//	}
 }

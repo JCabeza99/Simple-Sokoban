@@ -3,6 +3,8 @@ package es.upm.pproject.sokoban.model;
 public interface LevelInterface {
 
 	public int getnGoals();
+	
+	public String getName();
 
 	public void setnGoals(int nGoals);
 

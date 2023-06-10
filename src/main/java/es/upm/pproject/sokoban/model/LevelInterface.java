@@ -10,7 +10,11 @@ public interface LevelInterface {
 
 	public void setBoxesInGoal(int boxesInGoal);
 
-	public void move(int dir);
+	public int[] move(int dir);
+	
+	public void reverseMovePlayer(int dir);
+	
+	public void reverseMoveBox(int dir, int[] boxPreUndoPosition) throws WrongActionException ;
 
 	public PlayerInterface getPlayer();
 

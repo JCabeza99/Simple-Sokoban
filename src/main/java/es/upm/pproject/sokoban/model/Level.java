@@ -22,12 +22,12 @@ public class Level implements LevelInterface {
 	private String name;
 	private int failureStatus;
 	
-	public Level(String name, int[][] map, int nGoals, PlayerInterface player, int failureStatus){
+	public Level(String name, int[][] map, int nGoals, int boxesInGoal, PlayerInterface player, int failureStatus){
 		this.name=name;
 		this.map = map;
 		this.player = player;
 		this.nGoals = nGoals;
-		boxesInGoal = 0;
+		this.boxesInGoal = boxesInGoal;
 		this.failureStatus=failureStatus;
   	}
 	
@@ -44,6 +44,10 @@ public class Level implements LevelInterface {
 
 	public int getBoxesInGoal() {
 		return boxesInGoal;
+	}
+
+	public int getfailureStatus() {
+		return failureStatus;
 	}
 
 

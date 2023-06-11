@@ -13,268 +13,122 @@ import javax.swing.border.EmptyBorder;
 
 public class Gui extends JFrame {
 
-	ControllerInterface controller;
+    private JPanel contentPane;
+    private TitlePanel titleContainer;
+    private GamePanel gameContainer;
+    private ButtonPanel buttonContainer;
+    private JPanel scorePane;
 
-	int[][] map;
-	int rows;
-	int columns;
-	int y;
-	int x;
-	String name;
-	
-	private JPanel contentPane;
-	int levelScore = 0;
-	int TotalScore = 0;
+    private ControllerInterface controller;
 
-	String sSistemaOperativo = System.getProperty("os.name");
+    public Gui() {
+        contentPane = new JPanel();
+        titleContainer = new TitlePanel();
+        buttonContainer = new ButtonPanel();
+        gameContainer = new GamePanel();
 
-	public void paint(Graphics g) {
+        setTitle("Sokoban");
 
-		if(false) {
-			super.paint(g);
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.setColor(Color.BLACK);
-			g2d.setFont(new Font("GEORGIA", PLAIN, 40));
-			g2d.drawString("FELICIDADES", 175, 300);
-			g2d.drawString("HAS GANADO", 175, 350);
-		}
-		else {
-		
-		super.paint(g);
-		Graphics2D g2d = (Graphics2D) g;
+        // Screen Dimension retrieval
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameWidth = screenSize.width / 4;
+        int frameHeight = screenSize.height / 3;
+        int x = (screenSize.width - frameWidth) / 2;
+        int y = (screenSize.height - frameHeight) / 2;
 
-		g2d.setColor(Color.BLACK);
-		g2d.setFont(new Font("GEORGIA", PLAIN, 40));
-		g2d.drawString("SOKOBAN", 300, 100);
-		g2d.setFont(new Font("GEORGIA", PLAIN, 20));
-		g2d.drawString(name+ "", 200, 125);
-		g2d.setFont(new Font("GEORGIA", BOLD, 15));
-		g2d.drawString("Level Score:", 520, 400);
-		g2d.drawString(levelScore + "", 520, 440);
-		g2d.drawString("Total Score:", 520, 480);
-		g2d.drawString(TotalScore + "", 520, 520);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // set window location
+        setBounds(x, y, frameWidth, frameHeight);
 
-		Image pared;
-		Image suelo;
-		Image player;
-		Image caja;
-		Image meta;
-		Image boxInGoal;
+        // Aux container to handle Game and Button containers
+        JPanel viewContainer = new JPanel();
+        viewContainer.setLayout(new GridBagLayout());
 
-		Toolkit t = Toolkit.getDefaultToolkit();
-		if (sSistemaOperativo.equals("Linux")) { // Como las rutas relativas son distintas en windows yu linux hay que
-													// comprobar en que SO estas
-			pared = t.getImage("Photos/pared.jpg");
-			suelo = t.getImage("Photos/suelo.jpg");
-			player = t.getImage("Photos/player.png");
-			caja = t.getImage("Photos/caja.png");
-			meta = t.getImage("Photos/meta.png");
-			boxInGoal = t.getImage("Photos/GoalBox.png");
-		} else {
-			pared = t.getImage("Photos\\pared.jpg");
-			suelo = t.getImage("Photos\\suelo.jpg");
-			player = t.getImage("Photos\\player.png");
-			caja = t.getImage("Photos\\caja.png");
-			meta = t.getImage("Photos\\meta.png");
-			boxInGoal = t.getImage("Photos\\GoalBox.png");
-		}
+        GridBagConstraints gbc1 = new GridBagConstraints();
+        gbc1.gridx = 0;
+        gbc1.gridy = 0;
+        gbc1.weightx = 0.8;
+        gbc1.weighty = 0.8;
+        gbc1.fill = GridBagConstraints.BOTH;
+        gbc1.anchor = GridBagConstraints.CENTER;
+        viewContainer.add(gameContainer, gbc1);
 
-		for (int i = 0; i < rows; i++) {
+        GridBagConstraints gbc2 = new GridBagConstraints();
+        gbc2.gridx = 1;
+        gbc2.gridy = 0;
+        gbc2.weightx = 0.2;
+        gbc2.weighty = 0.8;
+        gbc2.fill = GridBagConstraints.BOTH;
+        gbc2.anchor = GridBagConstraints.CENTER;
+        viewContainer.add(buttonContainer, gbc2);
 
-			for (int j = 0; j < columns; j++) {
+        // ContentPane properties set up
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.add(titleContainer);
+        contentPane.add(viewContainer);
 
-				if (map[i][j] == 2) {
-					g2d.drawImage(pared, 80 + j * 40, 140 + i * 40, 40, 40, this);
-				} else if (map[i][j] == 3) {
-					g2d.drawImage(caja, 80 + j * 40, 140 + i * 40, 40, 40, this);
-				} else if (map[i][j] == 1) {
-					g2d.drawImage(suelo, 80 + j * 40, 140 + i * 40, 40, 40, this);
-					g2d.drawImage(meta, 80 + j * 40, 140 + i * 40, 40, 40, this);
-				} else if (map[i][j] == 0) {
-					g2d.drawImage(suelo, 80 + j * 40, 140 + i * 40, 40, 40, this);
-				} else {
-					g2d.drawImage(boxInGoal, 80 + j * 40, 140 + i * 40, 40, 40, this); // change to box in goal
-				}
-			}
-		}
-		g2d.drawImage(player, 80 + x * 40, 140 + y * 40, 40, 40, this);
-		}
+        // Add KeyListener to the JFrame
+        addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+                if (keyCode == KeyEvent.VK_UP) {
+                    controller.move(KeyEvent.VK_UP);
+                } else if (keyCode == KeyEvent.VK_RIGHT) {
+                    controller.move(KeyEvent.VK_RIGHT);
+                } else if (keyCode == KeyEvent.VK_DOWN) {
+                    controller.move(KeyEvent.VK_DOWN);
+                } else if (keyCode == KeyEvent.VK_LEFT) {
+                    controller.move(KeyEvent.VK_LEFT);
+                }
+            }
+        });
 
-	}
+        // Set the JFrame focusable to receive key events
+        setFocusable(true);
+        requestFocusInWindow();
 
-	/**
-	 * Create the frame.
-	 */
-	public Gui() {
+    }
 
-		controller = new Controller();
-		LevelInterface mapAux = controller.getLevel();
-		map = mapAux.getMap();
-		columns = map[0].length;
-		rows = map.length;
-		x = mapAux.getPlayer().getxPos();
-		y = mapAux.getPlayer().getyPos();
-		name = mapAux.getName();
-		
-		
+    public void setController(ControllerInterface controller) {
+        this.controller = controller;
+        buttonContainer.setController(controller);
+    }
 
-		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		double h = screenSize.getHeight();
-		double w = screenSize.getWidth();
+    public void updateView() {
+        LevelInterface level = controller.getLevel();
+        PlayerInterface player = level.getPlayer();
+        ScoreInterface score = player.getScore();
+        int[][] map = level.getMap();
+        titleContainer.setLevel(player.getLevel());
+        gameContainer.setMap(map);
+        gameContainer.setPlayerX(player.getxPos());
+        gameContainer.setPlayerY(player.getyPos());
+        gameContainer.setColumns(map[0].length);
+        gameContainer.setRows(map.length);
+        buttonContainer.setLevelScore(score);
+        gameContainer.update(gameContainer.getGraphics());
+        if (level.getBoxesInGoal() == level.getnGoals()) {
+            controller.nextLevel();
+        }
+        requestFocus();
+    }
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds((int) (w - 700) / 2, (int) (h - 700) / 2, 700, 700);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+    public void createDialog(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
 
-		JButton lblZ = new JButton("Undo");
-		lblZ.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				controller.undo();
-				updateView();
-			}
-		});
-		lblZ.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblZ.setBounds(520, 100, 140, 40); // margen por izquierda margen por arriba ancho y alto
-		lblZ.setHorizontalAlignment(JLabel.LEFT);
+    public void endGame() {
+        JOptionPane.showMessageDialog(this, "Congratulations! You have beaten sokoban. \n Your total score is : "
+                + controller.getLevel().getPlayer().getScore().getTotalScore());
+        int option = JOptionPane.OK_OPTION;
+        if (option == JOptionPane.OK_OPTION) {
+            // Cerrar el programa
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        }
 
-		JButton lblRG = new JButton("Restart game");
-		lblRG.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				controller.reStartGame();
-				updateView();
-			}
-		});
-		lblRG.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblRG.setBounds(520, 150, 140, 40);
-		lblRG.setHorizontalAlignment(JLabel.LEFT);
+    }
 
-		JButton lblRL = new JButton("Restart level");
-		lblRL.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				controller.reStartLevel();
-				updateView();
-			}
-		});
-		lblRL.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblRL.setBounds(520, 200, 140, 40);
-		lblRL.setHorizontalAlignment(JLabel.LEFT);
-
-		JButton lblS = new JButton("Save");
-		lblS.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				lblS.setText(lblS.getText() + ".");
-				// manda señal a controler 7
-			}
-		});
-		lblS.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblS.setBounds(520, 250, 140, 40);
-		lblS.setHorizontalAlignment(JLabel.LEFT);
-
-		JButton lblL = new JButton("Load");
-		lblL.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				lblL.setText(lblL.getText() + ".");
-				// manda señal a controler 7
-			}
-		});
-		lblL.setFont(new Font("Georgia", Font.PLAIN, 14));
-		lblL.setBounds(520, 300, 140, 40);
-		lblL.setHorizontalAlignment(JLabel.LEFT);
-		
-
-
-		/*
-		 * añadir elementos al panel
-		 */
-		contentPane.add(lblZ, BorderLayout.CENTER);
-		contentPane.add(lblRG, BorderLayout.CENTER);
-		contentPane.add(lblRL, BorderLayout.CENTER);
-		contentPane.add(lblS, BorderLayout.CENTER);
-		contentPane.add(lblL, BorderLayout.CENTER);
-
-		addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_UP) {
-					System.out.println("Up Arrrow-Key is pressed!");
-					controller.move(KeyEvent.VK_UP);
-				}
-
-				else if (keyCode == KeyEvent.VK_RIGHT) {
-					System.out.println("Right Arrrow-Key is pressed!");
-					controller.move(KeyEvent.VK_RIGHT);
-				}
-
-				else if (keyCode == KeyEvent.VK_DOWN) {
-					System.out.println("Down Arrrow-Key is pressed!");
-					controller.move(KeyEvent.VK_DOWN);
-				}
-
-				else if (keyCode == KeyEvent.VK_LEFT) {
-					System.out.println("Left Arrrow-Key is pressed!");
-					controller.move(KeyEvent.VK_LEFT);
-				}
-				updateView();
-			}
-		});
-
-	}
-
-	private void updateView() {
-		LevelInterface level = controller.getLevel();
-		PlayerInterface player = level.getPlayer();
-		ScoreInterface score = player.getScore();
-		map = level.getMap();
-		name = level.getName();
-		x = player.getxPos();
-		y = player.getyPos();
-		levelScore = score.getLevelScore();
-		TotalScore = score.getTotalScore();
-		columns = map[0].length;
-		rows = map.length;
-		if (level.getBoxesInGoal() == level.getnGoals()) {
-			if (player.getLevel() == 3) {
-				this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-			}
-			controller.nextLevel();
-			level = controller.getLevel();
-			player = level.getPlayer();
-			score = player.getScore();
-			map = level.getMap();
-			name = level.getName();
-			x = player.getxPos();
-			y = player.getyPos();
-			columns = map[0].length;
-			rows = map.length;
-			levelScore = score.getLevelScore();
-			TotalScore = score.getTotalScore();
-		}
-		update(getGraphics());
-	}
-	
-
-
-//	public class PopupExample {
-//
-//
-//	        JFrame frame = new JFrame("Popup Example");
-//	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	        frame.setSize(300, 200);
-//	        frame.setLayout(null);
-//
-//	        JButton button = new JButton("Mostrar popup");
-//	        button.setBounds(100, 50, 100, 30);
-//	        frame.add(button);
-//
-//	        button.addActionListener(e -> {
-//	            JOptionPane.showMessageDialog(frame, "¡Hola! Este es un popup.", "Popup", JOptionPane.INFORMATION_MESSAGE);
-//	        });
-//
-//	        frame.setVisible(true);
-//	    
-//	}
 }

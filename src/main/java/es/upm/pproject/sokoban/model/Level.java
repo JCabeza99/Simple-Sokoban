@@ -112,12 +112,7 @@ public class Level implements LevelInterface {
 	
 	// This method is used to move the player during an undo()
 	// Despite the name of the method, the int "dir" points to the correct position.
-	public void reverseMoveBox(int dir, int[] boxPreUndoPosition) throws WrongActionException {
-		
-		
-		if(map[boxPreUndoPosition[0]][boxPreUndoPosition[1]] != 3 && map[boxPreUndoPosition[0]][boxPreUndoPosition[1]] != 4) {
-			throw new WrongActionException("The action \"undo\" went wrong, tried to move a box that did not exist");
-		}
+	public void reverseMoveBox(int dir, int[] boxPreUndoPosition){
 		
 		int[] newPosBox = newPosition(boxPreUndoPosition[0], boxPreUndoPosition[1], dir);
 		

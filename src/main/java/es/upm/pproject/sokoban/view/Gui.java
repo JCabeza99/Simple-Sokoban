@@ -31,8 +31,8 @@ public class Gui extends JFrame {
 
         // Screen Dimension retrieval
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameWidth = screenSize.width / 4;
-        int frameHeight = screenSize.height / 3;
+        int frameWidth = 640;
+        int frameHeight = 480;
         int x = (screenSize.width - frameWidth) / 2;
         int y = (screenSize.height - frameHeight) / 2;
 

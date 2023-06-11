@@ -59,7 +59,7 @@ public class Controller implements ControllerInterface {
 		if (!actionManager.getActions().isEmpty()) {
 			actionManager.undo();
 		} else {
-			frame.createDialog("Warning: There are no actions to undo.");
+			frame.createDialog("Info: There are no actions to undo.");
 		}
 		frame.updateView();
 	}

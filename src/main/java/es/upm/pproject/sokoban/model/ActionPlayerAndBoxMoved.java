@@ -13,12 +13,7 @@ public class ActionPlayerAndBoxMoved implements ActionInterface{
 	
 	public void undo(LevelInterface level) {
 		level.reverseMovePlayer(dir);
-		try {
-			level.reverseMoveBox(dir, boxCurrentPos);
-		} catch (WrongActionException e) {
-			// TODO No se si esto esta bien
-			e.printStackTrace();
-		}
+		level.reverseMoveBox(dir, boxCurrentPos);
 	}
 	
 	public int getActionCode() {

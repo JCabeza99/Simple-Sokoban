@@ -18,7 +18,7 @@ public interface LevelInterface {
 	
 	public void reverseMovePlayer(int dir);
 	
-	public void reverseMoveBox(int dir, int[] boxPreUndoPosition) throws WrongActionException ;
+	public void reverseMoveBox(int dir, int[] boxPreUndoPosition);
 
 	public PlayerInterface getPlayer();
 

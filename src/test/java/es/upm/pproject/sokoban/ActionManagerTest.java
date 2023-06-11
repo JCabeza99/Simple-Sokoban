@@ -18,7 +18,7 @@ public class ActionManagerTest {
 	
 	@BeforeEach
 	public void init() {
-		controller = new Controller();
+		controller = new Controller(null);//TODO Hay que añadir la GUI
 		actionManager = controller.getActionManager();
 		pilaAcciones = actionManager.getActions();
 	}

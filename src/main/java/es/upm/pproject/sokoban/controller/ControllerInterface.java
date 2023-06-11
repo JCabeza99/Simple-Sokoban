@@ -19,4 +19,8 @@ public interface ControllerInterface {
 	
 	public ActionManager getActionManager();
 
+    public void save();
+
+    public void load();
+
 }

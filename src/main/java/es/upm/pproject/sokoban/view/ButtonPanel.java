@@ -6,13 +6,21 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import es.upm.pproject.sokoban.controller.ControllerInterface;
 import es.upm.pproject.sokoban.model.Score;
@@ -59,7 +67,7 @@ public class ButtonPanel extends JPanel {
         save.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                controller.save();
+                controller.save(filehandler(true));
             }
         });
 
@@ -67,7 +75,7 @@ public class ButtonPanel extends JPanel {
         load.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                controller.load();
+                controller.load(filehandler(false));
             }
         });
 
@@ -106,5 +114,23 @@ public class ButtonPanel extends JPanel {
     public void setLevelScore(ScoreInterface score) {
         levelScore.setText("level score = " + score.getLevelScore());
         TotalScore.setText("Total score = " + score.getTotalScore());
+    }
+
+    private File filehandler(boolean save) {
+        JFileChooser fileChooser = new JFileChooser("");
+        int choice;
+        if (save) {
+            choice = fileChooser.showSaveDialog(this);
+            fileChooser.setSelectedFile(new File("savedGame-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) +".json"));
+        } else {
+            choice = fileChooser.showOpenDialog(this);
+        }
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON File", "json");
+        fileChooser.setFileFilter(filter);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        if (choice == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null;
     }
 }

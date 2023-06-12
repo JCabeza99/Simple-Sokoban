@@ -11,6 +11,10 @@ public class ActionPlayerOnly implements ActionInterface{
 	public void undo(LevelInterface level) {
 		level.reverseMovePlayer(dir);
 	}
+
+	public int getDirection() {
+		return dir;
+    }
 	
 	public int getActionCode() {
 		return 0;

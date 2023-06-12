@@ -6,4 +6,6 @@ public interface ActionInterface {
 	
 	public int getActionCode();
 
+	public int getDirection();
+
 }

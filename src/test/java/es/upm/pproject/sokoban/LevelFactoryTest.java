@@ -14,7 +14,6 @@ import es.upm.pproject.sokoban.model.PlayerInterface;
 
 public class LevelFactoryTest {
 	PlayerInterface player = new Player(0,0);
-	int test=1;
 	LevelInterface level;
 	String path= "tests"+File.separatorChar ;
 	//This test class is still on prgress
@@ -26,58 +25,62 @@ public class LevelFactoryTest {
 		  	 {2,0,0,0,2,0,0,2},
 		  	 {2,0,0,0,2,2,2,2},
 		  	 {2,2,2,2,2,0,0,0}};
-	@BeforeEach
-	public void init() {
-		level = LevelFactory.createLevel(test, player,path);
-		test++;
-	}
 
 	@Test
     public void Correct() {
+		level = LevelFactory.createLevel(1, player,path);
 		assertEquals(level.getFailureStatus(),0);
 		assertArrayEquals(level.getMap(),map1);
 		assertEquals(level.getnGoals(),1);
-        assertEquals(2,player.getyPos());
-        assertEquals(4,player.getxPos());
+        assertEquals(4,player.getyPos());
+        assertEquals(2,player.getxPos());
 	}
 	@Test
     public void fail2Player() {
-        assertEquals(level.getFailureStatus(),1);
+		level = LevelFactory.createLevel(2, player,path);
+        assertEquals(1,level.getFailureStatus());
 	}
 	
 	@Test
     public void Symbol() {
-		assertEquals(level.getFailureStatus(),2);
+		level = LevelFactory.createLevel(3, player,path);
+		assertEquals(2,level.getFailureStatus());
 	}
 	
 	@Test
     public void NboxandNgoal1() {
-		assertEquals(level.getFailureStatus(),3);
+		level = LevelFactory.createLevel(4, player,path);
+		assertEquals(3,level.getFailureStatus());
 	}
 	
 	@Test
     public void NboxandNgoal2() {
-		assertEquals(level.getFailureStatus(),4);
+		level = LevelFactory.createLevel(5, player,path);
+		assertEquals(3,level.getFailureStatus());
 	}
 	
 	@Test
     public void noPlayer() {
-		assertEquals(level.getFailureStatus(),5);
+		level = LevelFactory.createLevel(6, player,path);
+		assertEquals(4,level.getFailureStatus());
 	}
 	
 	@Test
     public void noGoal_noBox() {
-		assertEquals(level.getFailureStatus(),6);
+		level = LevelFactory.createLevel(7, player,path);
+		assertEquals(5,level.getFailureStatus());
 	}
 	
 	@Test
     public void solved() {
-		assertEquals(level.getFailureStatus(),6);
+		level = LevelFactory.createLevel(8, player,path);
+		assertEquals(5,level.getFailureStatus());
 	}
 	
 	@Test
     public void NoMoreTest() {
-		assertEquals(level.getFailureStatus(),-1);
+		level = LevelFactory.createLevel(9, player,path);
+		assertEquals(-1,level.getFailureStatus());
 	}
 	
 	

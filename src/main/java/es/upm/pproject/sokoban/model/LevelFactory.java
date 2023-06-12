@@ -49,16 +49,6 @@ public class LevelFactory {
 		File archivo;
 		FileReader fr;
 		BufferedReader br;
-<<<<<<< HEAD
-		path = path + "level_" + level + ".txt";
-		System.out.print(path);
-		int[][] mat = null;
-		boolean placed = false;
-		int nBox = 0;
-		int nGoals = 0;
-		int nBoxOnGoal = 0;
-		String name = null;
-=======
 		path=path+"level_" + level + ".txt";
 		int[][] mat=null;
 		boolean placed=false;
@@ -66,7 +56,6 @@ public class LevelFactory {
 		int nGoals=0;
 		int nBoxOnGoal=0;
 		String name=null;
->>>>>>> AlHo:Creation and implementation of the save class
 		try {
 			// initialize reader
 			archivo = new File(path);
@@ -153,12 +142,8 @@ public class LevelFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
 		player.setLevel(level);
 		return new Level(name, mat, nGoals, nBoxOnGoal, player, failureStatus);
-=======
-		return new Level(name,mat,nGoals,nBoxOnGoal,player,failureStatus);
->>>>>>> AlHo:Creation and implementation of the save class
 	}
 	/*
 	 * cases of failureStatus

@@ -7,9 +7,11 @@ import static java.awt.Font.PLAIN;
 import static java.awt.Font.BOLD;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Gui extends JFrame {
 
@@ -57,7 +59,7 @@ public class Gui extends JFrame {
         GridBagConstraints gbc2 = new GridBagConstraints();
         gbc2.gridx = 1;
         gbc2.gridy = 0;
-        gbc2.weightx = 0.2;
+        gbc2.weightx = 0.25;
         gbc2.weighty = 0.8;
         gbc2.fill = GridBagConstraints.BOTH;
         gbc2.anchor = GridBagConstraints.CENTER;
@@ -82,6 +84,8 @@ public class Gui extends JFrame {
                     controller.move(KeyEvent.VK_DOWN);
                 } else if (keyCode == KeyEvent.VK_LEFT) {
                     controller.move(KeyEvent.VK_LEFT);
+                } else if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Z) {
+                    controller.undo();
                 }
             }
         });
@@ -125,10 +129,10 @@ public class Gui extends JFrame {
                 + controller.getLevel().getPlayer().getScore().getTotalScore());
         int option = JOptionPane.OK_OPTION;
         if (option == JOptionPane.OK_OPTION) {
-            // Cerrar el programa
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         }
 
     }
+
 
 }

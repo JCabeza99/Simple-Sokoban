@@ -125,14 +125,12 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'save'");
+	public void save(File file) {
+		frame.requestFocus();
 	}
 
 	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'load'");
+	public void load(File file) {
+		frame.updateView();
 	}
 }

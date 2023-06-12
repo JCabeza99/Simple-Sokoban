@@ -30,8 +30,9 @@
         <maven.install>3.0.0-M1</maven.install>
 
         <!-- Continous integration -->
-        <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
         <sonar.coverage.exclusions>**/view,**/controller</sonar.coverage.exclusions>
+        <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
+        
 
     </properties>
 

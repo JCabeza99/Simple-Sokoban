@@ -20,7 +20,7 @@ public class Controller implements ControllerInterface {
 	// String path;
 	public Controller(Gui frame) {
 		player = new Player(0, 0);
-		level = LevelFactory.createLevel(1, player, PATH);
+		createLevel(1);
 		actionManager = new ActionManager();
 		this.frame = frame;
 	}
@@ -69,37 +69,8 @@ public class Controller implements ControllerInterface {
 		int newlevel = player.getLevel() + 1;
 		player.getScore().nextLevel();
 
-		level = LevelFactory.createLevel(newlevel, player, PATH);
-		int failureStatus = level.getfailureStatus();
-		while (failureStatus > 0) {
-			switch (failureStatus) {
-				case 1:
-					frame.createDialog("Error: Level" + newlevel
-							+ " contains more than one warehouse man. Next level will be loaded");
-					break;
-				case 2:
-					frame.createDialog(
-							"Error: Level" + newlevel + " contains an invalid symbol. Next level will be loaded");
-					break;
-				case 3:
-					frame.createDialog("Error: Level" + newlevel
-							+ " contains different number of goals and boxes. Next level will be loaded");
-					break;
-				case 4:
-					frame.createDialog("Error: Level" + newlevel
-							+ " does not have a warehouse man set. Next level will be loaded");
-					break;
-				case 5:
-					frame.createDialog("Error: Level" + newlevel + " is solved. Next level will be loaded");
-				default:
-					break;
-			}
-			newlevel++;
-			level = LevelFactory.createLevel(newlevel, player, PATH);
-		}
-		if (failureStatus == -1) {
-			frame.endGame();
-		}
+		createLevel(newlevel);
+
 		actionManager = new ActionManager();
 
 		frame.updateView();
@@ -154,5 +125,43 @@ public class Controller implements ControllerInterface {
 			}
 		}
 		frame.requestFocus();
+	}
+
+	private void createLevel(int newlevel) {
+		level = LevelFactory.createLevel(newlevel, player, PATH);
+		int failureStatus = level.getfailureStatus();
+		while (failureStatus > 0) {
+			switch (failureStatus) {
+				case 1:
+					frame.createDialog("Error: Level" + newlevel
+							+ " contains more than one warehouse man. Next level will be loaded");
+					break;
+				case 2:
+					frame.createDialog(
+							"Error: Level" + newlevel + " contains an invalid symbol. Next level will be loaded");
+					break;
+				case 3:
+					frame.createDialog("Error: Level" + newlevel
+							+ " contains different number of goals and boxes. Next level will be loaded");
+					break;
+				case 4:
+					frame.createDialog("Error: Level" + newlevel
+							+ " does not have a warehouse man set. Next level will be loaded");
+					break;
+				case 5:
+					frame.createDialog("Error: Level" + newlevel + " is solved. Next level will be loaded");
+				default:
+					break;
+			}
+			newlevel++;
+			level = LevelFactory.createLevel(newlevel, player, PATH);
+		}
+		if (newlevel == 1 && failureStatus == -1) {
+			frame.createDialog("Error: first level is missing. Next level will be loaded");
+			createLevel(newlevel);
+		}
+		if (failureStatus == -1) {
+			frame.endGame();
+		}
 	}
 }

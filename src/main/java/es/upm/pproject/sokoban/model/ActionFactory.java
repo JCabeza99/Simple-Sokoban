@@ -2,7 +2,7 @@ package es.upm.pproject.sokoban.model;
 
 public class ActionFactory {
 
-	public ActionFactory() {
+	public ActionFactory() {//only creates Acction objects. No need for set anything in the constructor 
 
 	}
 

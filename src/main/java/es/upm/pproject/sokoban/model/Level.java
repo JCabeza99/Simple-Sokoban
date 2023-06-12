@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 
 public class Level implements LevelInterface {
 	
-	private int map[][];
+	private int[][] map;
 	
 	
 	// ints meanings:
@@ -50,11 +50,6 @@ public class Level implements LevelInterface {
 		return boxesInGoal;
 	}
 
-	public int getfailureStatus() {
-		return failureStatus;
-	}
-
-
 	public void setBoxesInGoal(int boxesInGoal) {
 		this.boxesInGoal = boxesInGoal;
 	}
@@ -70,7 +65,8 @@ public class Level implements LevelInterface {
 		int[] newPosPlayer = newPosition(player.getxPos(), player.getyPos(), dir);
 		
 		// Checks the current situation to decide how the movement will be done or if even is going to be done
-		switch(res[0] = checkPosition(newPosPlayer[0], newPosPlayer[1])) {
+		res[0] = checkPosition(newPosPlayer[0], newPosPlayer[1]);
+		switch(res[0]) {
 		
 		case 0: // There is no wall nor box in that direction so...
 			player.move(newPosPlayer[0], newPosPlayer[1]); // Moves the player

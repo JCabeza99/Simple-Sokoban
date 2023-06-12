@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
+
 
 import com.google.gson.Gson;
 
@@ -23,6 +23,7 @@ public class SaveStateManager {
 			FileReader rd=new FileReader(file);
 			Gson gson=new Gson();
 			loaded=gson.fromJson(rd, SaveState.class);
+			rd.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}

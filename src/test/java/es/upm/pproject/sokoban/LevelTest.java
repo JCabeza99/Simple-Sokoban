@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import es.upm.pproject.sokoban.model.*;
 import java.io.*;
-public class LevelTest {
+class LevelTest {
 	PlayerInterface player = new Player(0,0);
 	int x;
 	int y;
@@ -18,7 +18,7 @@ public class LevelTest {
 	//This test class is still on prgress
 	
 	@BeforeEach
-	public void init() {
+	void init() {
 		level = LevelFactory.createLevel(test, player,path);
 		test++;
 		x = player.getxPos();
@@ -26,73 +26,73 @@ public class LevelTest {
 	}
 
 	@Test
-    public void testCorrect() {
+    void testCorrect() {
         assertEquals(y,player.getyPos());
         assertEquals(x ,player.getxPos());
 	}
 	@Test
-    public void testMoveUP() {
+    void testMoveUP() {
 		level.move(KeyEvent.VK_UP);
         assertEquals(y-1,player.getyPos());
         assertEquals(x,player.getxPos());
 	}
 	@Test
-    public void testMoveRIGHT() {
+    void testMoveRIGHT() {
 		level.move(KeyEvent.VK_RIGHT);
         assertEquals(y,player.getyPos());
         assertEquals(x+1 ,player.getxPos());
 	}
 	@Test
-    public void testMoveDOWN() {
+    void testMoveDOWN() {
 		level.move(KeyEvent.VK_DOWN);
         assertEquals(y+1,player.getyPos());
         assertEquals(x ,player.getxPos());
 	}
 	@Test
-    public void testMoveLEFT() {
+    void testMoveLEFT() {
 		level.move(KeyEvent.VK_LEFT);
         assertEquals(y,player.getyPos());
         assertEquals(x-1,player.getxPos());
 	}
 	
 	@Test
-    public void testMoveBoxUP() {
+    void testMoveBoxUP() {
 		level.move(KeyEvent.VK_UP);
         assertEquals(y-1,player.getyPos());
         assertEquals(x,player.getxPos());
 	}
 	@Test
-    public void testMoveBoxRIGHT() {
+    void testMoveBoxRIGHT() {
 		level.move(KeyEvent.VK_RIGHT);
         assertEquals(y,player.getyPos());
         assertEquals(x+1 ,player.getxPos());
 	}
 	@Test
-    public void testMoveBoxDOWN() {
+    void testMoveBoxDOWN() {
 		level.move(KeyEvent.VK_DOWN);
         assertEquals(y+1,player.getyPos());
         assertEquals(x ,player.getxPos());
 	}
 	@Test
-    public void testMoveBoxLEFT() {
+    void testMoveBoxLEFT() {
 		level.move(KeyEvent.VK_LEFT);
         assertEquals(y,player.getyPos());
         assertEquals(x-1,player.getxPos());
 	}
 	@Test
-    public void testObstBox() {
+    void testObstBox() {
 		level.move(KeyEvent.VK_LEFT);
         assertEquals(y,player.getyPos());
         assertEquals(x-1,player.getxPos());
 	}
 	@Test
-    public void testObstBoxWall() {
+    void testObstBoxWall() {
 		level.move(KeyEvent.VK_LEFT);
         assertEquals(y,player.getyPos());
         assertEquals(x-1,player.getxPos());
 	}
 	@Test
-    public void testObstWall() {
+    void testObstWall() {
 		level.move(KeyEvent.VK_LEFT);
         assertEquals(y,player.getyPos());
         assertEquals(x-1,player.getxPos());

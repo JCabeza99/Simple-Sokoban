@@ -3,15 +3,13 @@ package es.upm.pproject.sokoban.view;
 import es.upm.pproject.sokoban.controller.*;
 import es.upm.pproject.sokoban.model.*;
 
-import static java.awt.Font.PLAIN;
-import static java.awt.Font.BOLD;
+
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class Gui extends JFrame {
 
@@ -19,7 +17,7 @@ public class Gui extends JFrame {
     private TitlePanel titleContainer;
     private GamePanel gameContainer;
     private ButtonPanel buttonContainer;
-    private JPanel scorePane;
+//    private JPanel scorePane;
 
     private ControllerInterface controller;
 
@@ -128,10 +126,7 @@ public class Gui extends JFrame {
     public void endGame() {
         JOptionPane.showMessageDialog(this, "Congratulations! You have beaten sokoban. \n Your total score is : "
                 + controller.getLevel().getPlayer().getScore().getTotalScore());
-        int option = JOptionPane.OK_OPTION;
-        if (option == JOptionPane.OK_OPTION) {
-            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        }
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 
     }
 

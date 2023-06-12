@@ -8,11 +8,11 @@ import es.upm.pproject.sokoban.view.Gui;
 import java.io.*;
 
 public class Controller implements ControllerInterface {
-	LevelInterface level;
-	PlayerInterface player;
-	Gui frame;
+	private LevelInterface level;
+	private PlayerInterface player;
+	private Gui frame;
 
-	String path = "levels" + File.separatorChar;
+	private static final String PATH = "levels" + File.separatorChar;
 	// String path;
 
 	ActionManager actionManager;
@@ -20,7 +20,7 @@ public class Controller implements ControllerInterface {
 	// String path;
 	public Controller(Gui frame) {
 		player = new Player(0, 0);
-		level = LevelFactory.createLevel(1, player, path);
+		level = LevelFactory.createLevel(1, player, PATH);
 		actionManager = new ActionManager();
 		this.frame = frame;
 	}
@@ -69,7 +69,7 @@ public class Controller implements ControllerInterface {
 		int newlevel = player.getLevel() + 1;
 		player.getScore().nextLevel();
 
-		level = LevelFactory.createLevel(newlevel, player, path);
+		level = LevelFactory.createLevel(newlevel, player, PATH);
 		int failureStatus = level.getfailureStatus();
 		while (failureStatus > 0) {
 			switch (failureStatus) {
@@ -95,7 +95,7 @@ public class Controller implements ControllerInterface {
 					break;
 			}
 			newlevel++;
-			level = LevelFactory.createLevel(newlevel, player, path);
+			level = LevelFactory.createLevel(newlevel, player, PATH);
 		}
 		if (failureStatus == -1) {
 			frame.endGame();
@@ -108,13 +108,13 @@ public class Controller implements ControllerInterface {
 	public void reStartLevel() {
 		int playerLevel = player.getLevel();
 		player.getScore().resetLevelScore();
-		level = LevelFactory.createLevel(playerLevel, player, path);
+		level = LevelFactory.createLevel(playerLevel, player, PATH);
 		frame.updateView();
 	}
 
 	public void reStartGame() {
 		player = new Player(0, 0);
-		level = LevelFactory.createLevel(1, player, path);
+		level = LevelFactory.createLevel(1, player, PATH);
 		frame.updateView();
 	}
 
@@ -153,5 +153,6 @@ public class Controller implements ControllerInterface {
 				e.printStackTrace();
 			}
 		}
+		frame.requestFocus();
 	}
 }

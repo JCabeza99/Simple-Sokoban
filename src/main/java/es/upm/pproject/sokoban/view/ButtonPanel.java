@@ -68,7 +68,6 @@ public class ButtonPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.save(filehandler(true));
-                requestFocusInWindow();
             }
         });
 
@@ -77,7 +76,6 @@ public class ButtonPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.load(filehandler(false));
-                requestFocusInWindow();
             }
         });
 

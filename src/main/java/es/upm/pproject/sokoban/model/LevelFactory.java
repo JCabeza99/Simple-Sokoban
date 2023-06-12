@@ -14,7 +14,7 @@ public class LevelFactory {
 	public static LevelInterface createLevel(int level, PlayerInterface player, String path) {
 		// initialize var
 		int failureStatus = 0;
-		File archivo;
+		File file;
 		FileReader fr;
 		BufferedReader br;
 		path=path+"level_" + level + ".txt";
@@ -26,8 +26,11 @@ public class LevelFactory {
 		String name="";
 		try {
 			// initialize reader
-			archivo = new File(path);
-			fr = new FileReader(archivo);
+			file = new File(path);
+			if(file == null ||!file.exists()) {
+				return new Level(mat,name, nGoals, nBoxOnGoal, player, -1);
+			}
+			fr = new FileReader(file);
 			br = new BufferedReader(fr);
 			// we save the name of the level
 			name = br.readLine();

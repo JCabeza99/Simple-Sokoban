@@ -117,12 +117,12 @@ public class Gui extends JFrame {
         if (level.getBoxesInGoal() == level.getnGoals()) {
             controller.nextLevel();
         }
-        requestFocus();
+        requestFocusInWindow();
     }
 
     public void createDialog(String message) {
         JOptionPane.showMessageDialog(this, message);
-        requestFocus();
+        requestFocusInWindow();
     }
 
     public void endGame() {

@@ -184,7 +184,9 @@ public class Level implements LevelInterface {
 	public int[][] getMap() {
 		return map;
 	}
-	
+	public int getFailureStatus() {
+	return failureStatus;
+	}
 	public void setMap(int[][] map) {
 		this.map = map;
 	}

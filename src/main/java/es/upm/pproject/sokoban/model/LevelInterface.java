@@ -26,6 +26,8 @@ public interface LevelInterface {
 
 	public int[][] getMap();
 
+	public int getFailureStatus();
+	
 	public void setMap(int[][] map);
 
 }

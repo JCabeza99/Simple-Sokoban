@@ -1,0 +1,10 @@
+Test 4 fail because diferent number of goals than boxes 1(goals>boxes)
+8 8
+++++....
++..+....
++.*+++++
++......+
+++W*+#.+
++...+..+
++...++++
++++++...

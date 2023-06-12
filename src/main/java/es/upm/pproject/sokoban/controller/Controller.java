@@ -21,7 +21,7 @@ public class Controller implements ControllerInterface {
 	public Controller(Gui frame) {
 		player = new Player(0, 0);
 		level = LevelFactory.createLevel(1, player, path);
-		actionManager = new ActionManager(level);
+		actionManager = new ActionManager();
 		this.frame = frame;
 	}
 
@@ -57,7 +57,8 @@ public class Controller implements ControllerInterface {
 
 	public void undo() {
 		if (!actionManager.getActions().isEmpty()) {
-			actionManager.undo();
+			ActionInterface action = actionManager.undo();
+			action.undo(level);
 		} else {
 			frame.createDialog("Info: There are no actions to undo.");
 		}
@@ -70,36 +71,37 @@ public class Controller implements ControllerInterface {
 
 		level = LevelFactory.createLevel(newlevel, player, path);
 		int failureStatus = level.getfailureStatus();
-		while(failureStatus > 0) {
+		while (failureStatus > 0) {
 			switch (failureStatus) {
 				case 1:
-					frame.createDialog("Error: Level" + newlevel +" contains more than one warehouse man. Next level will be loaded");
+					frame.createDialog("Error: Level" + newlevel
+							+ " contains more than one warehouse man. Next level will be loaded");
 					break;
 				case 2:
-					frame.createDialog("Error: Level" + newlevel +" contains an invalid symbol. Next level will be loaded");
+					frame.createDialog(
+							"Error: Level" + newlevel + " contains an invalid symbol. Next level will be loaded");
 					break;
 				case 3:
-					frame.createDialog("Error: Level" + newlevel +" contains different number of goals and boxes. Next level will be loaded");
+					frame.createDialog("Error: Level" + newlevel
+							+ " contains different number of goals and boxes. Next level will be loaded");
 					break;
 				case 4:
-					frame.createDialog("Error: Level" + newlevel +" does not have a warehouse man set. Next level will be loaded");
+					frame.createDialog("Error: Level" + newlevel
+							+ " does not have a warehouse man set. Next level will be loaded");
 					break;
 				case 5:
-					frame.createDialog("Error: Level" + newlevel +" is solved. Next level will be loaded");
+					frame.createDialog("Error: Level" + newlevel + " is solved. Next level will be loaded");
 				default:
-					break;	
+					break;
 			}
 			newlevel++;
 			level = LevelFactory.createLevel(newlevel, player, path);
 		}
-		if(failureStatus == - 1)
-		{
+		if (failureStatus == -1) {
 			frame.endGame();
 		}
-		actionManager = new ActionManager(level);
+		actionManager = new ActionManager();
 
-
-		
 		frame.updateView();
 	}
 
@@ -124,13 +126,32 @@ public class Controller implements ControllerInterface {
 		return actionManager;
 	}
 
-	@Override
 	public void save(File file) {
+		if (file != null) {
+			SaveState save = new SaveState(actionManager, level);
+			try {
+				SaveStateManager.save(save, file);
+				frame.createDialog("Your file has been saved in: " + file.getAbsolutePath());
+			} catch (Exception e) {
+				frame.createDialog("Unexpected error while saving the file, please check the log.");
+				e.printStackTrace();
+			}
+		}
 		frame.requestFocus();
 	}
 
-	@Override
 	public void load(File file) {
-		frame.updateView();
+		if (file != null) {
+			try {
+				SaveState save = SaveStateManager.load(file);
+				actionManager = save.getActionManager();
+				level = save.getLevel();
+				frame.createDialog("Your file has been loaded succesfully");
+				frame.updateView();
+			} catch (Exception e) {
+				frame.createDialog("Unexpected error while loading the file, please check the log.");
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -9,17 +9,12 @@ import com.google.gson.Gson;
 
 public class SaveStateManager {
 
-	public static String save(SaveState save) {
+	public static void save(SaveState save, File file) throws IOException{
 		Gson gson=new Gson();
 		String json=gson.toJson(save);
-		Date date=new Date();
-		String path= "games"+File.separatorChar+"savedGame"+date+".json";
-		try (FileWriter writer=new FileWriter(path)){
-			writer.write(json); 
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		return path;
+		try (FileWriter writer = new FileWriter(file.getAbsolutePath())) {
+            writer.write(json);
+        }
 	}
 	
 	public static SaveState load(File file){

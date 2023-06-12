@@ -5,29 +5,33 @@ public class Score implements ScoreInterface {
     int levelScore;
     int totalScore;
 
-    public Score(){
-    	levelScore=0;
-        totalScore=0;
+    public Score() {
+        levelScore = 0;
+        totalScore = 0;
     }
 
-    //Getters and setters
+    public Score(int levelScore, int totalScore) {
+        this.levelScore = levelScore;
+        this.totalScore = totalScore;
+    }
+
+    // Getters and setters
 
     public int getLevelScore() {
         return levelScore;
     }
 
-	public int getTotalScore() {
-		return totalScore;
-	}
+    public int getTotalScore() {
+        return totalScore;
+    }
 
-	public void incrementLevelScore() {
-		levelScore++;
+    public void incrementLevelScore() {
+        levelScore++;
         totalScore++;
-	}
+    }
 
     public void decrementLevelScore() {
-        if(levelScore != 0)
-        {
+        if (levelScore != 0) {
             levelScore--;
             totalScore--;
         }
@@ -43,11 +47,11 @@ public class Score implements ScoreInterface {
     }
 
     public void setLevelScore(int levelScore) {
-		this.levelScore = levelScore;
-	}
+        this.levelScore = levelScore;
+    }
 
     public void setTotalScore(int totalScore) {
-		this.totalScore = totalScore;
+        this.totalScore = totalScore;
     }
 
 }

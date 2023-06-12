@@ -8,6 +8,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -64,6 +68,7 @@ public class ButtonPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.save(filehandler(true));
+                requestFocusInWindow();
             }
         });
 
@@ -72,6 +77,7 @@ public class ButtonPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.load(filehandler(false));
+                requestFocusInWindow();
             }
         });
 
@@ -113,10 +119,11 @@ public class ButtonPanel extends JPanel {
     }
 
     private File filehandler(boolean save) {
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser("");
         int choice;
         if (save) {
             choice = fileChooser.showSaveDialog(this);
+            fileChooser.setSelectedFile(new File("savedGame-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) +".json"));
         } else {
             choice = fileChooser.showOpenDialog(this);
         }

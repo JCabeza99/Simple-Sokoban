@@ -4,9 +4,9 @@ public interface LevelInterface {
 
 	public int getnGoals();
 	
-	public String getName();
-
 	public void setnGoals(int nGoals);
+
+	public String getName();
 
 	public int getBoxesInGoal();
 

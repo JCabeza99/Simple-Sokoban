@@ -4,44 +4,12 @@ import java.io.*;
 
 public class LevelFactory {
 
-	// This class is expected to parse a level from a text document and build it
-	// inside the application
-
-	private static final int[][][] LEVELS = { // Level 1
-			{ { 2, 2, 2, 2, 0, 0, 0, 0 },
-					{ 2, 0, 0, 2, 0, 0, 0, 0 },
-					{ 2, 0, 0, 2, 2, 2, 2, 2 },
-					{ 2, 0, 0, 0, 0, 0, 0, 2 },
-					{ 2, 2, 0, 1, 2, 3, 0, 2 },
-					{ 2, 0, 0, 0, 2, 0, 0, 2 },
-					{ 2, 0, 0, 0, 2, 2, 2, 2 },
-					{ 2, 2, 2, 2, 2, 0, 0, 0 } },
-			// level 2
-			{ { 0, 2, 2, 2, 2, 2, 2 },
-					{ 0, 2, 0, 0, 0, 0, 2 },
-					{ 2, 2, 3, 0, 1, 0, 2 },
-					{ 2, 0, 0, 0, 0, 0, 2 },
-					{ 2, 0, 3, 2, 1, 0, 2 },
-					{ 2, 0, 0, 2, 2, 2, 2 },
-					{ 2, 2, 2, 2, 0, 0, 0 } },
-			// Level 3
-			{ { 2, 2, 2, 2, 0, 0 },
-					{ 2, 1, 0, 2, 0, 0 },
-					{ 2, 1, 0, 2, 2, 2 },
-					{ 2, 0, 3, 0, 0, 2 },
-					{ 2, 0, 3, 0, 0, 2 },
-					{ 2, 0, 0, 2, 2, 2 },
-					{ 2, 2, 2, 2, 0, 0 } },
-	};
-	private static final int[] GOALS = { 1, 2, 2 };
-	private static final int[][] POS = { { 2, 4 }, { 3, 3 }, { 1, 3 } };
-
 	/*
-	 * 0 vacio
-	 * 1 meta
-	 * 2 pared
-	 * 3 caja
-	 * 4 caja meta
+	 * 0 empty square
+	 * 1 goal
+	 * 2 wall
+	 * 3 box
+	 * 4 box in goal
 	 */
 	public static LevelInterface createLevel(int level, PlayerInterface player, String path) {
 		// initialize var
@@ -55,7 +23,7 @@ public class LevelFactory {
 		int nBox=0;
 		int nGoals=0;
 		int nBoxOnGoal=0;
-		String name=null;
+		String name="";
 		try {
 			// initialize reader
 			archivo = new File(path);
@@ -143,7 +111,7 @@ public class LevelFactory {
 			e.printStackTrace();
 		}
 		player.setLevel(level);
-		return new Level(name, mat, nGoals, nBoxOnGoal, player, failureStatus);
+		return new Level(mat,name, nGoals, nBoxOnGoal, player, failureStatus);
 	}
 	/*
 	 * cases of failureStatus

@@ -106,7 +106,7 @@ public class Gui extends JFrame {
         PlayerInterface player = level.getPlayer();
         ScoreInterface score = player.getScore();
         int[][] map = level.getMap();
-        titleContainer.setLevel(player.getLevel());
+        titleContainer.setLevel(level.getName());
         gameContainer.setMap(map);
         gameContainer.setPlayerX(player.getxPos());
         gameContainer.setPlayerY(player.getyPos());
@@ -122,6 +122,7 @@ public class Gui extends JFrame {
 
     public void createDialog(String message) {
         JOptionPane.showMessageDialog(this, message);
+        requestFocus();
     }
 
     public void endGame() {

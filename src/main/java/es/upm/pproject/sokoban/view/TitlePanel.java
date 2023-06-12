@@ -29,7 +29,7 @@ public class TitlePanel extends JPanel{
         
     }
 
-    public void setLevel(int level) {
-        this.level.setText("Level " + level);
+    public void setLevel(String name) {
+        this.level.setText(name);
     }
 }

@@ -1,5 +1,7 @@
 package es.upm.pproject.sokoban.controller;
 
+import java.io.File;
+
 import es.upm.pproject.sokoban.model.ActionManager;
 import es.upm.pproject.sokoban.model.LevelInterface;
 
@@ -19,8 +21,8 @@ public interface ControllerInterface {
 	
 	public ActionManager getActionManager();
 
-    public void save();
+    public void save(File file);
 
-    public void load();
+    public void load(File file);
 
 }

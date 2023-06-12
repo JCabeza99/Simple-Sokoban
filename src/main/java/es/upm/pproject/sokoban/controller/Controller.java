@@ -130,7 +130,8 @@ public class Controller implements ControllerInterface {
 	private void createLevel(int newlevel) {
 		level = LevelFactory.createLevel(newlevel, player, PATH);
 		int failureStatus = level.getfailureStatus();
-		while (failureStatus > 0) {
+		boolean out = false;
+		while (failureStatus > 0 && !out) {
 			switch (failureStatus) {
 				case 1:
 					frame.createDialog("Error: Level" + newlevel
@@ -150,8 +151,9 @@ public class Controller implements ControllerInterface {
 					break;
 				case 5:
 					frame.createDialog("Error: Level" + newlevel + " is solved. Next level will be loaded");
-				default:
 					break;
+				default:
+					out = true;
 			}
 			newlevel++;
 			level = LevelFactory.createLevel(newlevel, player, PATH);

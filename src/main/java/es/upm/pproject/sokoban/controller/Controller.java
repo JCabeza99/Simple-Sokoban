@@ -9,7 +9,6 @@ import java.io.*;
 
 public class Controller implements ControllerInterface {
 	private LevelInterface level;
-	private PlayerInterface player;
 	private Gui frame;
 
 	private static final String PATH = "levels" + File.separatorChar;
@@ -19,8 +18,7 @@ public class Controller implements ControllerInterface {
 
 	// String path;
 	public Controller(Gui frame) {
-		player = new Player(0, 0);
-		level = LevelFactory.createLevel(1, player, PATH);
+		level = LevelFactory.createLevel(1, new Player(0, 0), PATH);
 		actionManager = new ActionManager();
 		this.frame = frame;
 	}
@@ -66,57 +64,29 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void nextLevel() {
+		PlayerInterface player = level.getPlayer();
 		int newlevel = player.getLevel() + 1;
 		player.getScore().nextLevel();
 
-		level = LevelFactory.createLevel(newlevel, player, PATH);
-		int failureStatus = level.getFailureStatus();
-		while (failureStatus > 0) {
-			String error ="Error: Level";
-			switch (failureStatus) {
-				case 1:
-					frame.createDialog(error + newlevel
-							+ " contains more than one warehouse man. Next level will be loaded");
-					break;
-				case 2:
-					frame.createDialog(
-							error + newlevel + " contains an invalid symbol. Next level will be loaded");
-					break;
-				case 3:
-					frame.createDialog(error + newlevel
-							+ " contains different number of goals and boxes. Next level will be loaded");
-					break;
-				case 4:
-					frame.createDialog(error+ newlevel
-							+ " does not have a warehouse man set. Next level will be loaded");
-					break;
-				case 5:
-					frame.createDialog(error + newlevel + " is solved. Next level will be loaded");
-					break;
-				default:
-					break;
-			}
-			newlevel++;
-			level = LevelFactory.createLevel(newlevel, player, PATH);
-		}
-		if (failureStatus == -1) {
-			frame.endGame();
-		}
+		level = createLevel(newlevel, player);
+
 		actionManager = new ActionManager();
 
 		frame.updateView();
 	}
 
 	public void reStartLevel() {
+		PlayerInterface player = level.getPlayer();
 		int playerLevel = player.getLevel();
 		player.getScore().resetLevelScore();
-		level = LevelFactory.createLevel(playerLevel, player, PATH);
+		level = createLevel(playerLevel, player);
 		frame.updateView();
 	}
 
 	public void reStartGame() {
+		PlayerInterface player = level.getPlayer();
 		player = new Player(0, 0);
-		level = LevelFactory.createLevel(1, player, PATH);
+		level = createLevel(1, player);
 		frame.updateView();
 	}
 
@@ -156,5 +126,43 @@ public class Controller implements ControllerInterface {
 			}
 		}
 		frame.requestFocus();
+	}
+
+	private LevelInterface createLevel(int level, PlayerInterface player) {
+		LevelInterface createdlevel = LevelFactory.createLevel(level, player, PATH);
+		int failureStatus = createdlevel.getFailureStatus();
+		while (failureStatus > 0) {
+			String error ="Error: Level";
+			switch (failureStatus) {
+				case 1:
+					frame.createDialog(error + level
+							+ " contains more than one warehouse man. Next level will be loaded");
+					break;
+				case 2:
+					frame.createDialog(
+							error + level + " contains an invalid symbol. Next level will be loaded");
+					break;
+				case 3:
+					frame.createDialog(error + level
+							+ " contains different number of goals and boxes. Next level will be loaded");
+					break;
+				case 4:
+					frame.createDialog(error+ level
+							+ " does not have a warehouse man set. Next level will be loaded");
+					break;
+				case 5:
+					frame.createDialog(error + level + " is solved. Next level will be loaded");
+					break;
+				default:
+					break;
+			}
+			level++;
+			createdlevel = LevelFactory.createLevel(level, player, PATH);
+		}
+
+		if (failureStatus == -1) {
+			frame.endGame();
+		}
+		return createdlevel;
 	}
 }

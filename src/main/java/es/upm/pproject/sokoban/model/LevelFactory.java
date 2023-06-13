@@ -4,6 +4,8 @@ import java.io.*;
 
 public class LevelFactory {
 
+	private LevelFactory() {}
+
 	/*
 	 * 0 empty square
 	 * 1 goal

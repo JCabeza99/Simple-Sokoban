@@ -3,6 +3,7 @@ package es.upm.pproject.sokoban.controller;
 import java.io.File;
 
 import es.upm.pproject.sokoban.model.ActionManager;
+import es.upm.pproject.sokoban.model.ActionManagerInterface;
 import es.upm.pproject.sokoban.model.LevelInterface;
 
 public interface ControllerInterface extends java.io.Serializable {
@@ -19,7 +20,7 @@ public interface ControllerInterface extends java.io.Serializable {
 
 	public LevelInterface getLevel();
 	
-	public ActionManager getActionManager();
+	public ActionManagerInterface getActionManager();
 
     public void save(File file);
 

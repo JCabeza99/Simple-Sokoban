@@ -13,7 +13,7 @@ public class Controller implements ControllerInterface {
 
 	private static final String PATH = "levels" + File.separatorChar;
 
-	ActionManager actionManager;
+	ActionManagerInterface actionManager;
 
 	public Controller(Gui frame) {
 		level = LevelFactory.createLevel(1, new Player(0, 0), PATH);
@@ -91,7 +91,7 @@ public class Controller implements ControllerInterface {
 		return level;
 	}
 
-	public ActionManager getActionManager() {
+	public ActionManagerInterface getActionManager() {
 		return actionManager;
 	}
 

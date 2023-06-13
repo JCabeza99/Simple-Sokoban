@@ -1,6 +1,12 @@
 package es.upm.pproject.sokoban.model;
 
 public class ActionFactory {
+	
+	enum addInfo{
+		DIRECTION,
+		POSX,
+		POSY
+	}
 
 	public ActionFactory() {//only creates Acction objects. No need for set anything in the constructor 
 
@@ -12,10 +18,10 @@ public class ActionFactory {
 
 		switch (actionId) {
 			case 0:
-				return new ActionPlayerOnly(additionalInfo[0]);
+				return new ActionPlayerOnly(additionalInfo[addInfo.DIRECTION.ordinal()]);
 			case 1:
-				return new ActionPlayerAndBoxMoved(additionalInfo[0],
-						new int[] { additionalInfo[1], additionalInfo[2] });
+				return new ActionPlayerAndBoxMoved(additionalInfo[addInfo.DIRECTION.ordinal()],
+						new int[] { additionalInfo[addInfo.POSX.ordinal()], additionalInfo[addInfo.POSY.ordinal()] });
 			default:
 				return null;
 		}

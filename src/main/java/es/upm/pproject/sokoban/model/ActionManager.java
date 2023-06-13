@@ -3,7 +3,7 @@ package es.upm.pproject.sokoban.model;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class ActionManager {
+public class ActionManager implements ActionManagerInterface{
 
 	private ActionFactory actionFactory;
 	private Deque<ActionInterface> actions;

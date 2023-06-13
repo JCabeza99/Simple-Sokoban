@@ -20,7 +20,7 @@ public class SaveState {
 	public SaveState() {
 	}
 
-	public SaveState(ActionManager ac, LevelInterface level) {
+	public SaveState(ActionManagerInterface ac, LevelInterface level) {
 		PlayerInterface player = level.getPlayer();
 		score = new int[2];
 		map = level.getMap();
@@ -47,7 +47,7 @@ public class SaveState {
 		return new Level(map,name,nGoals, boxesInGoal, player, 0);
 	}
 
-	public ActionManager getActionManager() {
+	public ActionManagerInterface getActionManager() {
 		Iterator<SavedAction> iterador = savedActions.iterator();
 		Deque<ActionInterface> actionsSaved = new ArrayDeque<>();
 		while (iterador.hasNext()) {

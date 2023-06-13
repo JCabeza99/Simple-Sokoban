@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 
 public class SaveStateManager {
 
+	private SaveStateManager() {}
+		
 	public static void save(SaveState save, File file) throws IOException{
 		Gson gson=new Gson();
 		String json=gson.toJson(save);

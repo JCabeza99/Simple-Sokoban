@@ -13,8 +13,7 @@ public class App{
 	 */
 	public static void main(String[] args) {
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+		EventQueue.invokeLater(() -> {
 				try {
 					Gui frame = new Gui();
 					ControllerInterface controller = new Controller(frame);
@@ -24,7 +23,7 @@ public class App{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			
 		});
 	}
 

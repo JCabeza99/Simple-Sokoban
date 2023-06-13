@@ -10,19 +10,19 @@ The general overview of the project's file hierarchy is the following:
 ├── src
    ├── main
    │   ├── java
-   │   │   └── es
-   │   │       └── upm
-   │   │           └── pproject
-   │   │               └── sokoban
-   │   │                   ├── controller
-   │   │                   ├── model
-   │   │                   └── view
+   │       └── es
+   │           └── upm
+   │               └── pproject
+   │                   └── sokoban
+   │                       ├── controller
+   │                       ├── model
+   │                       └── view
    └── test
        ├── java
-       │   └── es
-       │       └── upm
-       │           └── pproject
-       │               └── sokoban
+           └── es
+               └── upm
+                   └── pproject
+                       └── sokoban
 ```
 ### Main
 

@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import es.upm.pproject.sokoban.controller.Controller;
 import es.upm.pproject.sokoban.controller.ControllerInterface;
 import es.upm.pproject.sokoban.view.Gui;
-import es.upm.pproject.sokoban.view.Gui;
 
 public class App{
 

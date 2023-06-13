@@ -70,27 +70,29 @@ public class Controller implements ControllerInterface {
 		player.getScore().nextLevel();
 
 		level = LevelFactory.createLevel(newlevel, player, PATH);
-		int failureStatus = level.getfailureStatus();
+		int failureStatus = level.getFailureStatus();
 		while (failureStatus > 0) {
+			String error ="Error: Level";
 			switch (failureStatus) {
 				case 1:
-					frame.createDialog("Error: Level" + newlevel
+					frame.createDialog(error + newlevel
 							+ " contains more than one warehouse man. Next level will be loaded");
 					break;
 				case 2:
 					frame.createDialog(
-							"Error: Level" + newlevel + " contains an invalid symbol. Next level will be loaded");
+							error + newlevel + " contains an invalid symbol. Next level will be loaded");
 					break;
 				case 3:
-					frame.createDialog("Error: Level" + newlevel
+					frame.createDialog(error + newlevel
 							+ " contains different number of goals and boxes. Next level will be loaded");
 					break;
 				case 4:
-					frame.createDialog("Error: Level" + newlevel
+					frame.createDialog(error+ newlevel
 							+ " does not have a warehouse man set. Next level will be loaded");
 					break;
 				case 5:
-					frame.createDialog("Error: Level" + newlevel + " is solved. Next level will be loaded");
+					frame.createDialog(error + newlevel + " is solved. Next level will be loaded");
+					break;
 				default:
 					break;
 			}

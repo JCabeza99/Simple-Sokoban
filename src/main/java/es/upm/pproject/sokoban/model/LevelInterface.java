@@ -10,8 +10,6 @@ public interface LevelInterface {
 
 	public int getBoxesInGoal();
 
-	public int getfailureStatus();
-
 	public void setBoxesInGoal(int boxesInGoal);
 
 	public int[] move(int dir);

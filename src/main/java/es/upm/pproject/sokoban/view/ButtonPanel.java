@@ -1,16 +1,10 @@
 package es.upm.pproject.sokoban.view;
 
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.nio.file.Files;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.Box;
@@ -23,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import es.upm.pproject.sokoban.controller.ControllerInterface;
-import es.upm.pproject.sokoban.model.Score;
 import es.upm.pproject.sokoban.model.ScoreInterface;
 
 public class ButtonPanel extends JPanel {
@@ -35,7 +28,6 @@ public class ButtonPanel extends JPanel {
     JLabel TotalScore;
 
     public ButtonPanel() {
-        this.controller = controller;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(new EmptyBorder(10, 10, 10, 10));
 

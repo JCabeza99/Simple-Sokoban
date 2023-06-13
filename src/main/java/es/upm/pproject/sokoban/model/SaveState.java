@@ -47,18 +47,18 @@ public class SaveState {
 
 	public ActionManager getActionManager() {
 		Iterator<SavedAction> iterador = savedActions.iterator();
-		Stack<ActionInterface> savedActions = new Stack<ActionInterface>();
+		Stack<ActionInterface> actionsSaved = new Stack<ActionInterface>();
 		while (iterador.hasNext()) {
 			SavedAction accion = iterador.next();
 			int dir = accion.getDir();
 			int[] boxCurrentPos = accion.getBoxCurrentPos();
 			if (boxCurrentPos == null) {
-				savedActions.push(new ActionPlayerOnly(dir));
+				actionsSaved.push(new ActionPlayerOnly(dir));
 			} else {
-				savedActions.push(new ActionPlayerAndBoxMoved(dir, boxCurrentPos));
+				actionsSaved.push(new ActionPlayerAndBoxMoved(dir, boxCurrentPos));
 			}
 		}
-		return new ActionManager(savedActions);
+		return new ActionManager(actionsSaved);
 	}
 
 }

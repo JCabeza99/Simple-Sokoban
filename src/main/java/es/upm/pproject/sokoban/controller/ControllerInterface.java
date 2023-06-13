@@ -5,7 +5,7 @@ import java.io.File;
 import es.upm.pproject.sokoban.model.ActionManager;
 import es.upm.pproject.sokoban.model.LevelInterface;
 
-public interface ControllerInterface {
+public interface ControllerInterface extends java.io.Serializable {
 
 	public void move(int input);
 

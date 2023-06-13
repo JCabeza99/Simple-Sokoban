@@ -1,6 +1,6 @@
 package es.upm.pproject.sokoban.model;
 
-public interface LevelInterface {
+public interface LevelInterface extends java.io.Serializable {
 
 	public int getnGoals();
 	

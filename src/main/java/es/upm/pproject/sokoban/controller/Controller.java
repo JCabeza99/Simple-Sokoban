@@ -12,11 +12,9 @@ public class Controller implements ControllerInterface {
 	private Gui frame;
 
 	private static final String PATH = "levels" + File.separatorChar;
-	// String path;
 
 	ActionManager actionManager;
 
-	// String path;
 	public Controller(Gui frame) {
 		level = LevelFactory.createLevel(1, new Player(0, 0), PATH);
 		actionManager = new ActionManager();
@@ -84,8 +82,7 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void reStartGame() {
-		PlayerInterface player = level.getPlayer();
-		player = new Player(0, 0);
+		PlayerInterface player = new Player(0, 0);
 		level = createLevel(1, player);
 		frame.updateView();
 	}
@@ -131,7 +128,8 @@ public class Controller implements ControllerInterface {
 	private LevelInterface createLevel(int level, PlayerInterface player) {
 		LevelInterface createdlevel = LevelFactory.createLevel(level, player, PATH);
 		int failureStatus = createdlevel.getFailureStatus();
-		while (failureStatus > 0) {
+		boolean stop = false;
+		while (failureStatus > 0 && !stop) {
 			String error ="Error: Level";
 			switch (failureStatus) {
 				case 1:
@@ -154,6 +152,7 @@ public class Controller implements ControllerInterface {
 					frame.createDialog(error + level + " is solved. Next level will be loaded");
 					break;
 				default:
+					stop = true;
 					break;
 			}
 			level++;

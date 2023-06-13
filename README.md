@@ -9,7 +9,7 @@ The general overview of the project's file hierarchy is the following:
 ```
 ├── src
    ├── main
-   │   ├── java
+   │   └── java
    │       └── es
    │           └── upm
    │               └── pproject
@@ -18,7 +18,7 @@ The general overview of the project's file hierarchy is the following:
    │                       ├── model
    │                       └── view
    └── test
-       ├── java
+       └── java
            └── es
                └── upm
                    └── pproject
@@ -51,3 +51,19 @@ You can see here a brief explanation on how the methods work and some  pre-condi
 - **save:** Saves all game data in a Json.
 
 - **load:** Loads all game data from a Json.
+
+## models overview
+
+You can see here a brief explanation of all the models of our game.
+
+- **ActionFactory:** Creates an action object depending on whether the action is a solo player or a player and box action.
+
+- **ActionManager:** Save the actions so that you can take them out when doing undo.
+
+- **LevelFactory:** From a txt create an object of the Level class with all the necessary data.
+
+- **Level:** Class that allows to get and set data of objects of that class.
+
+- **Player:** Class that declares players who store their position, the level they are at and their score also they can get and set data of objects of that class.
+
+- **SaveState:** Class that collects the current state of the player and the level to save.

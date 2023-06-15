@@ -75,9 +75,11 @@ public class ButtonPanel extends JPanel {
 
         levelScore = new JLabel("level score = 0");
         levelScore.setFont(new Font("GEORGIA", Font.BOLD, 24));
+        levelScore.setLabelFor(this);
 
         totalScore = new JLabel("Total score = 0");
         totalScore.setFont(new Font("GEORGIA", Font.BOLD, 24));
+        totalScore.setLabelFor(this);
 
         Box buttonBox = Box.createVerticalBox();
         buttonBox.add(Box.createVerticalGlue());

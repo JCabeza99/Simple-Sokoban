@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import es.upm.pproject.sokoban.model.*;
 import java.io.*;
@@ -100,31 +101,16 @@ class LevelTest {
         assertEquals(y,player.getyPos());
         assertEquals(x-1,player.getxPos());
 	}
-	@Test
-    void testObstBox() {
-		level = LevelFactory.createLevel(18, player,path);
+
+	@ParameterizedTest
+	@ValueSource(ints = {18,19,20})
+	void testMoveAgainstObstacle(int levelNumber) {
+		level = LevelFactory.createLevel(levelNumber, player,path);
 		x = player.getxPos();
 		y = player.getyPos();
 		level.move(KeyEvent.VK_LEFT);
         assertEquals(y,player.getyPos());
         assertEquals(x,player.getxPos());
 	}
-	@Test
-    void testObstBoxWall() {
-		level = LevelFactory.createLevel(19, player,path);
-		x = player.getxPos();
-		y = player.getyPos();
-		level.move(KeyEvent.VK_LEFT);
-        assertEquals(y,player.getyPos());
-        assertEquals(x,player.getxPos());
-	}
-	@Test
-    void testObstWall() {
-		level = LevelFactory.createLevel(20, player,path);
-		x = player.getxPos();
-		y = player.getyPos();
-		level.move(KeyEvent.VK_LEFT);
-        assertEquals(y,player.getyPos());
-        assertEquals(x,player.getxPos());
-	}
+
 }

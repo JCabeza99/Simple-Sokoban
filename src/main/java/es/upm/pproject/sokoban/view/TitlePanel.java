@@ -17,10 +17,12 @@ public class TitlePanel extends JPanel{
         JLabel title = new JLabel("SOKOBAN");
         title.setAlignmentX(CENTER_ALIGNMENT);
         title.setFont(new Font("GEORGIA", Font.BOLD, 24));
+        title.setLabelFor(this);
 
         level = new JLabel("");
         level.setAlignmentX(CENTER_ALIGNMENT);
         level.setFont(new Font("GEORGIA", Font.PLAIN, 24));
+        level.setLabelFor(this);
 
         add(title);
         add(level);

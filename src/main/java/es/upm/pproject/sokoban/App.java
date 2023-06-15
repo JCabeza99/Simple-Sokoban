@@ -2,12 +2,16 @@ package es.upm.pproject.sokoban;
 
 import java.awt.EventQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.upm.pproject.sokoban.controller.Controller;
 import es.upm.pproject.sokoban.controller.ControllerInterface;
 import es.upm.pproject.sokoban.view.Gui;
 
 public class App{
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 	/**
 	 * Launch the application.
 	 */
@@ -21,7 +25,7 @@ public class App{
 					frame.updateView();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.error("An error occurred during the execution of the application", e);
 				}
 			
 		});

@@ -7,11 +7,16 @@ import es.upm.pproject.sokoban.view.Gui;
 
 import java.io.*;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 public class Controller implements ControllerInterface {
+	
+	private static final String PATH = "levels" + File.separatorChar;
+	private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+	
 	private LevelInterface level;
 	private Gui frame;
-
-	private static final String PATH = "levels" + File.separatorChar;
 
 	ActionManagerInterface actionManager;
 
@@ -103,7 +108,7 @@ public class Controller implements ControllerInterface {
 				frame.createDialog("Your file has been saved in: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				frame.createDialog("Unexpected error while saving the file, please check the log.");
-				e.printStackTrace();
+				LOGGER.error("An error occurred when saving the game:", e);
 			}
 		}
 		frame.requestFocus();
@@ -119,7 +124,7 @@ public class Controller implements ControllerInterface {
 				frame.updateView();
 			} catch (Exception e) {
 				frame.createDialog("Unexpected error while loading the file, please check the log.");
-				e.printStackTrace();
+				LOGGER.error("An error occurred when loading the game:", e);
 			}
 		}
 		frame.requestFocus();

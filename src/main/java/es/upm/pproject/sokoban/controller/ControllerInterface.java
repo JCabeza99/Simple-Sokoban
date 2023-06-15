@@ -2,7 +2,6 @@ package es.upm.pproject.sokoban.controller;
 
 import java.io.File;
 
-import es.upm.pproject.sokoban.model.ActionManager;
 import es.upm.pproject.sokoban.model.ActionManagerInterface;
 import es.upm.pproject.sokoban.model.LevelInterface;
 

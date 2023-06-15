@@ -113,17 +113,18 @@ public class ButtonPanel extends JPanel {
     }
 
     private File filehandler(boolean save) {
-        JFileChooser fileChooser = new JFileChooser("");
+        JFileChooser fileChooser = new JFileChooser();
         int choice;
-        if (save) {
-            choice = fileChooser.showSaveDialog(this);
-            fileChooser.setSelectedFile(new File("savedGame-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) +".json"));
-        } else {
-            choice = fileChooser.showOpenDialog(this);
-        }
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON File", "json");
         fileChooser.setFileFilter(filter);
         fileChooser.setAcceptAllFileFilterUsed(false);
+        if (save) {
+            fileChooser.setSelectedFile(new File("savedGame-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) +".json"));
+            choice = fileChooser.showSaveDialog(this);
+        } else {
+            choice = fileChooser.showOpenDialog(this);
+        }
+        
         if (choice == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile();
         }

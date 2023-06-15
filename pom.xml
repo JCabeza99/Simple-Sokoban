@@ -44,9 +44,10 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.32</version>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
         </dependency>
+
         <!-- Testing dependencies-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -125,7 +126,7 @@
         </plugins>
     </build>
 
-    <!-- <profiles>
+    <profiles>
         <profile>
             <id>coverage</id>
             <build>
@@ -157,6 +158,6 @@
                 </plugins>
             </build>
         </profile>
-    </profiles> -->
+    </profiles>
 
 </project>

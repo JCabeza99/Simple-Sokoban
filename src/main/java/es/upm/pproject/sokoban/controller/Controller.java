@@ -62,6 +62,7 @@ public class Controller implements ControllerInterface {
 			action.undo(level);
 		} else {
 			frame.createDialog("Info: There are no actions to undo.");
+			LOGGER.info("Info: There are no actions to undo.");
 		}
 		frame.updateView();
 	}
@@ -74,7 +75,8 @@ public class Controller implements ControllerInterface {
 		level = createLevel(newlevel, player);
 
 		actionManager = new ActionManager();
-
+		frame.createDialog("Good job! Let's go to the next level!");
+		LOGGER.info("Info: next level has been loaded.");
 		frame.updateView();
 	}
 

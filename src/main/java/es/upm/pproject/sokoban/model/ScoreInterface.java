@@ -1,6 +1,8 @@
 package es.upm.pproject.sokoban.model;
 
-public interface ScoreInterface {
+import java.io.Serializable;
+
+public interface ScoreInterface extends Serializable{
 
 	public int getLevelScore();
 

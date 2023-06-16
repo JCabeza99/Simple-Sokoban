@@ -22,6 +22,11 @@ public class Level implements LevelInterface {
 	private int failureStatus;
 	private String name;
 	
+	enum position {
+		X,
+		Y
+	}
+	
 	public Level(int[][] map, String name , int nGoals, int boxesInGoal, PlayerInterface player, int failureStatus){
 		this.map = map;
 		this.player = player;
@@ -65,31 +70,31 @@ public class Level implements LevelInterface {
 		int[] newPosPlayer = newPosition(player.getxPos(), player.getyPos(), dir);
 		
 		// Checks the current situation to decide how the movement will be done or if even is going to be done
-		res[0] = checkPosition(newPosPlayer[0], newPosPlayer[1]);
+		res[0] = checkPosition(newPosPlayer[position.X.ordinal()], newPosPlayer[position.Y.ordinal()]);
 		switch(res[0]) {
 		
 		case 0: // There is no wall nor box in that direction so...
-			player.move(newPosPlayer[0], newPosPlayer[1]); // Moves the player
+			player.move(newPosPlayer[position.X.ordinal()], newPosPlayer[position.Y.ordinal()]); // Moves the player
 			player.getScore().incrementLevelScore();       // And increases the score of the current level
 			break;
 		
 		case 1: // There is a box in that direction, so...
 			
-			int[] newPosBox = newPosition(newPosPlayer[0], newPosPlayer[1], dir);
+			int[] newPosBox = newPosition(newPosPlayer[position.X.ordinal()], newPosPlayer[position.Y.ordinal()], dir);
 			
-			if(checkPosition(newPosBox[0], newPosBox[1]) == 0) { // A box only can be moved if there is nothing in the next position
+			if(checkPosition(newPosBox[position.X.ordinal()], newPosBox[position.Y.ordinal()]) == 0) { // A box only can be moved if there is nothing in the next position
 				
 				
 				
-				player.move(newPosPlayer[0], newPosPlayer[1]); // Moves the player
+				player.move(newPosPlayer[position.X.ordinal()], newPosPlayer[position.Y.ordinal()]); // Moves the player
 				player.getScore().incrementLevelScore();       // And increases the score of the current level
 				
 				// Moves the box, doing the necessary changes in the map 
 				// The method is called with newPosPlayer as its first argument because the player is now in the box old position
 				moveBox(newPosPlayer, newPosBox); 
 				
-				res[1] = newPosBox[0];
-				res[2] = newPosBox[1];
+				res[1] = newPosBox[position.X.ordinal()];
+				res[2] = newPosBox[position.Y.ordinal()];
 				
 			}else {
 				res[0]=-1;
@@ -105,7 +110,7 @@ public class Level implements LevelInterface {
 	// Despite the name of the method, the int "dir" points to the correct position.
 	public void reverseMovePlayer(int dir) {
 		int[] newPosPlayer = newPosition(player.getxPos(), player.getyPos(), dir);
-		player.move(newPosPlayer[0], newPosPlayer[1]); // Moves the player
+		player.move(newPosPlayer[position.X.ordinal()], newPosPlayer[position.Y.ordinal()]); // Moves the player
 		player.getScore().decrementLevelScore();
 	}
 	
@@ -114,7 +119,7 @@ public class Level implements LevelInterface {
 	// Despite the name of the method, the int "dir" points to the correct position.
 	public void reverseMoveBox(int dir, int[] boxPreUndoPosition){
 		
-		int[] newPosBox = newPosition(boxPreUndoPosition[0], boxPreUndoPosition[1], dir);
+		int[] newPosBox = newPosition(boxPreUndoPosition[position.X.ordinal()], boxPreUndoPosition[position.Y.ordinal()], dir);
 		
 		moveBox(boxPreUndoPosition, newPosBox);
 		
@@ -154,17 +159,17 @@ public class Level implements LevelInterface {
 	// but checks if there is a goal position in their new positions to change the map correctly
 	private void moveBox(int[] oldPosBox, int[] newPosBox) {
 		
-		if(map[oldPosBox[1]][oldPosBox[0]] == 3) {// Checks if there was a goal position where the box was before the move
-			map[oldPosBox[1]][oldPosBox[0]] = 0;
+		if(map[oldPosBox[position.Y.ordinal()]][oldPosBox[position.X.ordinal()]] == 3) {// Checks if there was a goal position where the box was before the move
+			map[oldPosBox[position.Y.ordinal()]][oldPosBox[position.X.ordinal()]] = 0;
 		}else {
-			map[oldPosBox[1]][oldPosBox[0]] = 1;
+			map[oldPosBox[position.Y.ordinal()]][oldPosBox[position.X.ordinal()]] = 1;
 			boxesInGoal--;
 		}
 		
-		if(map[newPosBox[1]][newPosBox[0]] == 0) {// Checks if there is a goal position where the box currently is
-			map[newPosBox[1]][newPosBox[0]] = 3;
+		if(map[newPosBox[position.Y.ordinal()]][newPosBox[position.X.ordinal()]] == 0) {// Checks if there is a goal position where the box currently is
+			map[newPosBox[position.Y.ordinal()]][newPosBox[position.X.ordinal()]] = 3;
 		}else {
-			map[newPosBox[1]][newPosBox[0]] = 4;
+			map[newPosBox[position.Y.ordinal()]][newPosBox[position.X.ordinal()]] = 4;
 			boxesInGoal++;
 		}
 	}

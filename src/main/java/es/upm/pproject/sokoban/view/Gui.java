@@ -17,7 +17,6 @@ public class Gui extends JFrame {
     private TitlePanel titleContainer;
     private GamePanel gameContainer;
     private ButtonPanel buttonContainer;
-//    private JPanel scorePane;
 
     private ControllerInterface controller;
 
@@ -36,7 +35,7 @@ public class Gui extends JFrame {
         int x = (screenSize.width - frameWidth) / 2;
         int y = (screenSize.height - frameHeight) / 2;
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         // set window location
         setBounds(x, y, frameWidth, frameHeight);
@@ -72,6 +71,7 @@ public class Gui extends JFrame {
 
         // Add KeyListener to the JFrame
         addKeyListener(new KeyAdapter() {
+        	@Override
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
                 if (keyCode == KeyEvent.VK_UP) {
@@ -127,7 +127,6 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, "Congratulations! You have beaten sokoban. \n Your total score is : "
                 + controller.getLevel().getPlayer().getScore().getTotalScore());
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-
     }
 
 

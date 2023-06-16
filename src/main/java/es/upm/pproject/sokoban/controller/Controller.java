@@ -7,16 +7,19 @@ import es.upm.pproject.sokoban.view.Gui;
 
 import java.io.*;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 public class Controller implements ControllerInterface {
+	
+	private static final String PATH = "levels" + File.separatorChar;
+	private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+	
 	private LevelInterface level;
 	private Gui frame;
 
-	private static final String PATH = "levels" + File.separatorChar;
-	// String path;
+	ActionManagerInterface actionManager;
 
-	ActionManager actionManager;
-
-	// String path;
 	public Controller(Gui frame) {
 		level = LevelFactory.createLevel(1, new Player(0, 0), PATH);
 		actionManager = new ActionManager();
@@ -59,6 +62,7 @@ public class Controller implements ControllerInterface {
 			action.undo(level);
 		} else {
 			frame.createDialog("Info: There are no actions to undo.");
+			LOGGER.info("Info: There are no actions to undo.");
 		}
 		frame.updateView();
 	}
@@ -71,7 +75,8 @@ public class Controller implements ControllerInterface {
 		level = createLevel(newlevel, player);
 
 		actionManager = new ActionManager();
-
+		frame.createDialog("Good job! Let's go to the next level!");
+		LOGGER.info("Info: next level has been loaded.");
 		frame.updateView();
 	}
 
@@ -84,8 +89,7 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void reStartGame() {
-		PlayerInterface player = level.getPlayer();
-		player = new Player(0, 0);
+		PlayerInterface player = new Player(0, 0);
 		level = createLevel(1, player);
 		frame.updateView();
 	}
@@ -94,7 +98,7 @@ public class Controller implements ControllerInterface {
 		return level;
 	}
 
-	public ActionManager getActionManager() {
+	public ActionManagerInterface getActionManager() {
 		return actionManager;
 	}
 
@@ -106,7 +110,7 @@ public class Controller implements ControllerInterface {
 				frame.createDialog("Your file has been saved in: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				frame.createDialog("Unexpected error while saving the file, please check the log.");
-				e.printStackTrace();
+				LOGGER.error("An error occurred when saving the game:", e);
 			}
 		}
 		frame.requestFocus();
@@ -122,7 +126,7 @@ public class Controller implements ControllerInterface {
 				frame.updateView();
 			} catch (Exception e) {
 				frame.createDialog("Unexpected error while loading the file, please check the log.");
-				e.printStackTrace();
+				LOGGER.error("An error occurred when loading the game:", e);
 			}
 		}
 		frame.requestFocus();
@@ -131,7 +135,8 @@ public class Controller implements ControllerInterface {
 	private LevelInterface createLevel(int level, PlayerInterface player) {
 		LevelInterface createdlevel = LevelFactory.createLevel(level, player, PATH);
 		int failureStatus = createdlevel.getFailureStatus();
-		while (failureStatus > 0) {
+		boolean stop = false;
+		while (failureStatus > 0 && !stop) {
 			String error ="Error: Level";
 			switch (failureStatus) {
 				case 1:
@@ -154,6 +159,7 @@ public class Controller implements ControllerInterface {
 					frame.createDialog(error + level + " is solved. Next level will be loaded");
 					break;
 				default:
+					stop = true;
 					break;
 			}
 			level++;

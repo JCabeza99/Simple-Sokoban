@@ -2,9 +2,16 @@ package es.upm.pproject.sokoban.model;
 
 import java.io.*;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
+
 public class LevelFactory {
 
-	private LevelFactory() {}
+	private static final Logger LOGGER = LoggerFactory.getLogger(LevelFactory.class);
+
+	private LevelFactory() {
+	}
 
 	/*
 	 * 0 empty square
@@ -16,46 +23,34 @@ public class LevelFactory {
 	public static LevelInterface createLevel(int level, PlayerInterface player, String path) {
 		// initialize var
 		int failureStatus = 0;
-		File file;
-		FileReader fr;
-		BufferedReader br;
-		path=path+"level_" + level + ".txt";
-		int[][] mat=null;
-		boolean placed=false;
-		int nBox=0;
-		int nGoals=0;
-		int nBoxOnGoal=0;
-		String name="";
-		try {
-			// initialize reader
-			file = new File(path);
-			if(file == null ||!file.exists()) {
-				return new Level(mat,name, nGoals, nBoxOnGoal, player, -1);
+		int[][] mat = null;
+		boolean placed = false;
+		int nBox = 0;
+		int nGoals = 0;
+		int nBoxOnGoal = 0;
+		String name = "";
+		File file = new File(path + "level_" + level + ".txt");
+
+		if (!file.exists()) {
+				return new Level(mat, name, nGoals, nBoxOnGoal, player, -1);
 			}
-			fr = new FileReader(file);
-			br = new BufferedReader(fr);
+
+		try (FileReader fr = new FileReader(file);
+				BufferedReader br = new BufferedReader(fr)) {
+
+			
 			// we save the name of the level
 			name = br.readLine();
 			// we save the files an columns of the level
-			String line = br.readLine();
-			int fil = 0;// numero fil y col no tienen por que ser de un Digito. corregir
-			int col = 0;
-			int i;
-			int length = line.length();// we need the length because readLine puts a 0 at the end of the String
-			for (i = 0; line.charAt(i) != ' '; i++) {// we get the files
-				fil = fil * 10;
-				fil = fil + Character.getNumericValue(line.charAt(i));
-			}
-			i++;
-			// the loop begin where the loop of files ends
-			for (; i < length && line.charAt(i) != ' ' && line.charAt(i) != '\n'; i++) {// we get the columns
-				col = col * 10;
-				col = col + Character.getNumericValue(line.charAt(i));
-			}
+			String[] rowCol = br.readLine().split("\\s+");
+			int fil = Integer.parseInt(rowCol[0]);
+			int col = Integer.parseInt(rowCol[1]);
+			
 			// generation of the matrix
 			mat = new int[fil][col];
 			// loop to fill the matrix of the level
-			i = 0;
+			int i = 0;
+			String line = "";
 			while (i < fil && failureStatus == 0) {
 				line = br.readLine();
 				int j = 0;
@@ -102,22 +97,28 @@ public class LevelFactory {
 				}
 				i++;
 			}
-			if (failureStatus == 0) {
-				if (nBox != nGoals) {
-					failureStatus = 3;
-				} else if (!placed) {
-					failureStatus = 4;
-				} else if (nGoals == nBoxOnGoal) {
-					failureStatus = 5;
-				}
-			}
+			failureStatus = checkFailureStatus(failureStatus, nBox, nGoals, nBoxOnGoal, placed);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("Error while reading the level: ", e);
 		}
 		player.setLevel(level);
-		return new Level(mat,name, nGoals, nBoxOnGoal, player, failureStatus);
+		return new Level(mat, name, nGoals, nBoxOnGoal, player, failureStatus);
 	}
+
+	private static int checkFailureStatus(int failureStatus, int nBox, int nGoals, int nBoxOnGoal, boolean placed) {
+		if (failureStatus == 0) {
+			if (nBox != nGoals) {
+				failureStatus = 3;
+			} else if (!placed) {
+				failureStatus = 4;
+			} else if (nGoals == nBoxOnGoal) {
+				failureStatus = 5;
+			}
+		}
+		return failureStatus;
+	}
+
 	/*
 	 * cases of failureStatus
 	 * 0=no failure

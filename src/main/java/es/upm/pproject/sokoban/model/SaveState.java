@@ -1,7 +1,9 @@
 package es.upm.pproject.sokoban.model;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Iterator;
-import java.util.Stack;
+
 
 public class SaveState {
 
@@ -11,16 +13,16 @@ public class SaveState {
 	private int playerX;
 	private int playerY;
 	private int playerLevel;
-	private int[] score;
+	private Score score;
 	private String name;
-	private Stack<SavedAction> savedActions;
+	private Deque<SavedAction> savedActions;
 
 	public SaveState() {
 	}
 
-	public SaveState(ActionManager ac, LevelInterface level) {
+	public SaveState(ActionManagerInterface ac, LevelInterface level) {
+		
 		PlayerInterface player = level.getPlayer();
-		score = new int[2];
 		map = level.getMap();
 		nGoals = level.getnGoals();
 		name = level.getName();
@@ -28,9 +30,9 @@ public class SaveState {
 		playerX = level.getPlayer().getxPos();
 		playerY = level.getPlayer().getyPos();
 		playerLevel = level.getPlayer().getLevel();
-		score[0] = player.getScore().getLevelScore();
-		score[1] = player.getScore().getTotalScore();
-		savedActions = new Stack<SavedAction>();
+		ScoreInterface aux = player.getScore();
+		score = new Score(aux.getLevelScore(),aux.getTotalScore());
+		savedActions = new ArrayDeque<>();
 		Iterator<ActionInterface> iterador = ac.getActions().iterator();
 		while (iterador.hasNext()) {
 			ActionInterface accion = iterador.next();
@@ -41,13 +43,13 @@ public class SaveState {
 	public LevelInterface getLevel() {
 		Player player = new Player(playerX, playerY);
 		player.setLevel(playerLevel);
-		player.setScore(new Score(score[0], score[1]));
+		player.setScore(score);
 		return new Level(map,name,nGoals, boxesInGoal, player, 0);
 	}
 
-	public ActionManager getActionManager() {
+	public ActionManagerInterface getActionManager() {
 		Iterator<SavedAction> iterador = savedActions.iterator();
-		Stack<ActionInterface> actionsSaved = new Stack<ActionInterface>();
+		Deque<ActionInterface> actionsSaved = new ArrayDeque<>();
 		while (iterador.hasNext()) {
 			SavedAction accion = iterador.next();
 			int dir = accion.getDir();

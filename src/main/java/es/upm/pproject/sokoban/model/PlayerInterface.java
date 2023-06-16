@@ -1,6 +1,8 @@
 package es.upm.pproject.sokoban.model;
 
-public interface PlayerInterface {
+import java.io.Serializable;
+
+public interface PlayerInterface extends Serializable{
 
 	public int getxPos();
 

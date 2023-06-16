@@ -21,11 +21,13 @@ import es.upm.pproject.sokoban.model.ScoreInterface;
 
 public class ButtonPanel extends JPanel {
 
+	
+	
     ControllerInterface controller;
 
     JLabel levelScore;
 
-    JLabel TotalScore;
+    JLabel totalScore;
 
     public ButtonPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -73,9 +75,11 @@ public class ButtonPanel extends JPanel {
 
         levelScore = new JLabel("level score = 0");
         levelScore.setFont(new Font("GEORGIA", Font.BOLD, 24));
+        levelScore.setLabelFor(this);
 
-        TotalScore = new JLabel("Total score = 0");
-        TotalScore.setFont(new Font("GEORGIA", Font.BOLD, 24));
+        totalScore = new JLabel("Total score = 0");
+        totalScore.setFont(new Font("GEORGIA", Font.BOLD, 24));
+        totalScore.setLabelFor(this);
 
         Box buttonBox = Box.createVerticalBox();
         buttonBox.add(Box.createVerticalGlue());
@@ -91,7 +95,7 @@ public class ButtonPanel extends JPanel {
         buttonBox.add(Box.createVerticalStrut(20));
         buttonBox.add(levelScore);
         buttonBox.add(Box.createVerticalStrut(20));
-        buttonBox.add(TotalScore);
+        buttonBox.add(totalScore);
         buttonBox.add(Box.createVerticalGlue());
 
         add(buttonBox);
@@ -105,21 +109,22 @@ public class ButtonPanel extends JPanel {
 
     public void setLevelScore(ScoreInterface score) {
         levelScore.setText("level score = " + score.getLevelScore());
-        TotalScore.setText("Total score = " + score.getTotalScore());
+        totalScore.setText("Total score = " + score.getTotalScore());
     }
 
     private File filehandler(boolean save) {
-        JFileChooser fileChooser = new JFileChooser("");
+        JFileChooser fileChooser = new JFileChooser();
         int choice;
-        if (save) {
-            choice = fileChooser.showSaveDialog(this);
-            fileChooser.setSelectedFile(new File("savedGame-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) +".json"));
-        } else {
-            choice = fileChooser.showOpenDialog(this);
-        }
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON File", "json");
         fileChooser.setFileFilter(filter);
         fileChooser.setAcceptAllFileFilterUsed(false);
+        if (save) {
+            fileChooser.setSelectedFile(new File("savedGame-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) +".json"));
+            choice = fileChooser.showSaveDialog(this);
+        } else {
+            choice = fileChooser.showOpenDialog(this);
+        }
+        
         if (choice == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile();
         }

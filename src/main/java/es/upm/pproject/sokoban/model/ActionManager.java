@@ -1,19 +1,20 @@
 package es.upm.pproject.sokoban.model;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-public class ActionManager {
+public class ActionManager implements ActionManagerInterface{
 
 	private ActionFactory actionFactory;
-	private Stack<ActionInterface> actions;
+	private Deque<ActionInterface> actions;
 	
 	
 	public ActionManager() {
 		this.actionFactory = new ActionFactory();
-		this.actions = new Stack<ActionInterface>();
+		this.actions = new ArrayDeque<>();
 	}
 	
-	public ActionManager(Stack<ActionInterface> actions) {
+	public ActionManager(Deque<ActionInterface> actions) {
 		this.actionFactory = new ActionFactory();
 		this.actions = actions;
 	}
@@ -28,7 +29,7 @@ public class ActionManager {
 		
 	}
 	
-	public Stack<ActionInterface>  getActions(){
+	public Deque<ActionInterface>  getActions(){
 		return actions;
 	}
 }

@@ -15,7 +15,7 @@ public class GamePanel extends JPanel {
     private int[][] map;
     private int playerX;
     private int playerY;
-
+    private static final String DIR="Photos";
 
 
     @Override
@@ -28,16 +28,16 @@ public class GamePanel extends JPanel {
         Image player;
         Image caja;
         Image meta;
-        Image boxInGoal;
-
+        Image boxInGoal;	
+        
         Toolkit t = Toolkit.getDefaultToolkit();
 
-        pared = t.getImage("Photos" + File.separatorChar + "pared.jpg");
-        suelo = t.getImage("Photos" + File.separatorChar + "suelo.jpg");
-        player = t.getImage("Photos" + File.separatorChar + "player.png");
-        caja = t.getImage("Photos" + File.separatorChar + "caja.png");
-        meta = t.getImage("Photos" + File.separatorChar + "meta.png");
-        boxInGoal = t.getImage("Photos" + File.separatorChar + "GoalBox.png");
+        pared = t.getImage(DIR + File.separatorChar + "pared.jpg");
+        suelo = t.getImage(DIR + File.separatorChar + "suelo.jpg");
+        player = t.getImage(DIR + File.separatorChar + "player.png");
+        caja = t.getImage(DIR + File.separatorChar + "caja.png");
+        meta = t.getImage(DIR + File.separatorChar + "meta.png");
+        boxInGoal = t.getImage(DIR + File.separatorChar + "GoalBox.png");
 
         int cellSize = Math.min(getWidth() / columns, getHeight() / rows);
         int widthStart = (getWidth() - columns * cellSize) / 2;
